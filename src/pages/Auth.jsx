@@ -180,7 +180,7 @@ function Auth() {
 
                 {/* Icon */}
                 <div className="auth-icon">
-                    🩸
+                    
                 </div>
 
 

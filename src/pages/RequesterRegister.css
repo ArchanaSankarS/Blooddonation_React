@@ -1,0 +1,302 @@
+* {
+    box-sizing: border-box;
+}
+
+.requester-register-page {
+    min-height: 100vh;
+    width: 100%;
+
+    padding: 80px 20px 50px;
+
+    display: flex;
+    justify-content: center;
+
+    background: #fff6f7;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    position: relative;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.requester-register-back {
+    position: absolute;
+
+    top: 30px;
+    left: 5%;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    border: none;
+    background: transparent;
+
+    color: #777;
+
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.requester-register-back:hover {
+    color: #c7192e;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.requester-register-card {
+    width: 100%;
+    max-width: 850px;
+
+    padding: 50px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 45px rgba(120, 20, 30, 0.12);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.requester-register-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.requester-register-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff0f2;
+    color: #c7192e;
+}
+
+.requester-register-label {
+    margin: 0 0 10px;
+
+    color: #c7192e;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    letter-spacing: 4px;
+}
+
+.requester-register-header h1 {
+    margin: 0;
+
+    color: #333;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 45px;
+}
+
+.requester-register-header h1 span {
+    color: #c7192e;
+}
+
+.requester-register-header p:last-child {
+    margin-top: 15px;
+
+    color: #c7192e;
+
+    font-size: 20px;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.requester-section-title {
+    margin: 30px 0 18px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #eee;
+
+    color: #333;
+
+    font-size: 25px;
+
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* =========================
+   FORM GRID
+========================= */
+
+.requester-form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.requester-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.requester-form-group label {
+    margin-bottom: 8px;
+
+    color: #444;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.requester-form-group input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 13px;
+
+    border: 1px solid #e1d5d7;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #fffafa;
+
+    color: #333;
+
+    font-size: 14px;
+}
+
+.requester-form-group input:focus {
+    border-color: #c7192e;
+
+    box-shadow:
+        0 0 0 3px rgba(199, 25, 46, 0.07);
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.requester-register-error {
+    margin-top: 20px;
+
+    padding: 12px 15px;
+
+    border-radius: 8px;
+
+    background: #fff0f0;
+
+    color: #c7192e;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+/* =========================
+   REGISTER BUTTON
+========================= */
+
+.requester-register-submit {
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 30px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #c7192e;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.requester-register-submit:hover {
+    background: #a91527;
+}
+
+.requester-register-submit:active {
+    transform: scale(0.99);
+}
+
+/* =========================
+   NOTE
+========================= */
+
+.requester-register-note {
+    margin: 15px 0 0;
+
+    color: #999;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .requester-register-page {
+        padding: 80px 15px 30px;
+    }
+
+    .requester-register-card {
+        padding: 35px 20px;
+    }
+
+    .requester-register-header h1 {
+        font-size: 36px;
+    }
+
+    .requester-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .requester-register-header h1 {
+        font-size: 30px;
+    }
+
+    .requester-register-label {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+
+    .requester-register-header p:last-child {
+        font-size: 16px;
+    }
+}

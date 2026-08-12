@@ -17,7 +17,7 @@ function Welcome() {
         <div className="welcome-page">
 
         
-                    {/* WELCOME  */}
+                
            
 
             <section className="hero-section">
@@ -66,14 +66,15 @@ function Welcome() {
 
 
           
-                  {/* BLOOD DONATION */}
+              
+              
         
 
             <section className="image-content-section donation-section">
 
                 <div className="section-inner">
 
-                    {/* CONTENT */}
+                 
 
                     <div className="feature-content">
 
@@ -129,8 +130,7 @@ function Welcome() {
 
                 <div className="section-inner">
 
-                    {/* IMAGE */}
-
+                   
                     <div className="image-card image-card-two">
 
                         <div className="orbit orbit-one"></div>
@@ -149,7 +149,7 @@ function Welcome() {
                     </div>
 
 
-                    {/* CONTENT */}
+             
 
                     <div className="feature-content">
 
@@ -164,8 +164,8 @@ function Welcome() {
                         </h2>
 
                         <p>
-                            Search for available donors based on
-                            blood group and city. Connect easily
+                            Search for available donors based on 
+                            
                             with someone who can help when it
                             matters most.
                         </p>
@@ -183,7 +183,7 @@ function Welcome() {
 
 
           
-                   {/*HOW IT WORKS    */}
+                  
         
 
             <section className="how-section">
@@ -213,7 +213,6 @@ function Welcome() {
                 <div className="process-row">
 
 
-                    {/* REGISTER */}
 
                     <div className="process-card">
 

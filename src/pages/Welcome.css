@@ -1,4 +1,6 @@
-
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -21,10 +23,14 @@ body {
 
 .welcome-page {
     width: 100%;
+    max-width: 100%;
     overflow: hidden;
 }
 
 
+/* =========================================================
+   HERO SECTION
+========================================================= */
 
 .hero-section {
     width: 100%;
@@ -37,9 +43,7 @@ body {
     justify-content: center;
 
     background-image: url("/assets/bd1.jpg");
-
     background-size: cover;
-
     background-position: center;
 
     position: relative;
@@ -49,25 +53,25 @@ body {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background: rgba(250, 225, 228, 0.88);
-    
+
+    z-index: 1;
 }
 
 
-
+/* =========================================================
+   WELCOME CARD
+========================================================= */
 
 .welcome-card {
-    width: 2000px;
-
+    width: 1200px;
     max-width: 100%;
 
     padding: 40px;
 
     position: relative;
-
     z-index: 2;
 
     text-align: center;
@@ -86,7 +90,6 @@ body {
     color: #c7192e;
 
     font-size: 14px;
-
     font-weight: 700;
 
     letter-spacing: 3px;
@@ -100,7 +103,6 @@ body {
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 56px;
-
     font-weight: 600;
 
     line-height: 1.08;
@@ -118,113 +120,199 @@ body {
     color: #c7192e;
 
     font-size: 17px;
-
     line-height: 1.7;
 }
 
 
-
+/* =========================================================
+   WELCOME BUTTONS
+========================================================= */
 
 .welcome-buttons {
     display: flex;
 
     justify-content: center;
+    align-items: center;
 
-    gap: 20px;
+    gap: 25px;
 
-    margin-top: 30px;
+    margin-top: 35px;
 }
 
+
+/* =========================================================
+   DONATE / NEED BLOOD BUTTON
+========================================================= */
+
 .action-button {
-    width: 215px;
+    width: 280px;
+    min-height: 78px;
 
-    padding: 15px 20px;
+    padding: 16px 28px;
 
-    border: none;
+    border: 2px solid #c7192e;
+    border-radius: 13px;
 
-    border-radius: 9px;
+    /*
+       RED + LIGHT RED + WHITE
+       DOUBLE SHADE GRADIENT
+    */
+    background: linear-gradient(
+        135deg,
+        #f297a3 0%,
+        #c7192e 35%,
+        #e85b6b 65%,
+        #f6f3f3 100%
+    );
 
-    background: #c7192e;
-
-    color: white;
+    color: #ffffff;
 
     cursor: pointer;
 
     text-align: left;
 
-    transition: 0.3s;
-}
-
-.action-button:hover {
-    background: #a91527;
-
-    transform: translateY(-4px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     box-shadow:
-        0 8px 20px rgba(199, 25, 46, 0.20);
+        0 8px 22px rgba(199, 25, 46, 0.22);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
 }
+
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+
+.action-button:hover {
+    transform: translateY(-5px);
+
+    background: linear-gradient(
+        135deg,
+        #9f1025 0%,
+        #c7192e 35%,
+        #e94f61 65%,
+        #fff5f6 100%
+    );
+
+    box-shadow:
+        0 14px 30px rgba(199, 25, 46, 0.30);
+}
+
+
+/* =========================================================
+   BUTTON MAIN TEXT
+========================================================= */
 
 .action-button strong {
     display: block;
 
-    font-size: 17px;
+    font-size: 20px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    color: #ffffff;
+    
 }
+
+
+/* =========================================================
+   BUTTON SMALL TEXT
+========================================================= */
 
 .action-button small {
     display: block;
 
-    margin-top: 4px;
+    margin-top: 6px;
 
-    color: white;
+    color: #ffffff;
 
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: 500;
 
-    opacity: 0.85;
+    line-height: 1.3;
+
+    opacity: 0.95;
 }
 
 
-
+/* =========================================================
+   IMAGE + CONTENT SECTIONS
+========================================================= */
 
 .image-content-section {
-    width: 100%;
+    width: 100vw !important;
+    max-width: 100vw !important;
 
-    padding: 65px 5%;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+
+    padding: 75px 5%;
+
+    position: relative;
 }
+
+
+/* =========================================================
+   FIRST SECTION BACKGROUND
+========================================================= */
 
 .donation-section {
-    background: #fff7f7;
+    background: #fff7f7 !important;
 }
+
+
+/* =========================================================
+   SECOND SECTION BACKGROUND
+========================================================= */
 
 .donor-section {
-    background: #fffaf5;
+    background: #fffaf5 !important;
 }
 
 
+/* =========================================================
+   SAME IMAGE / CONTENT GAP
+========================================================= */
 
 .section-inner {
     width: 100%;
+    max-width: 1450px;
 
-    max-width: 1400px;
-
-    margin: auto;
+    margin: 0 auto;
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    column-gap: 120px;
+
+    row-gap: 60px;
 
     align-items: center;
-/* filter: brightness(1.5); */
-    gap: 80px;
 }
 
 
-
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .feature-content {
+    width: 100%;
     max-width: 600px;
 }
 
 .feature-label {
+    display: inline-block;
+
     color: #c7192e;
 
     font-size: 15px;
@@ -257,7 +345,7 @@ body {
 
     margin: 0;
 
-    color:  #c7192e;
+    color: #c7192e;
 
     font-size: 18px;
 
@@ -265,29 +353,34 @@ body {
 }
 
 
-
+/* =========================================================
+   IMAGE CARD
+========================================================= */
 
 .image-card {
     width: 500px;
-
     height: 500px;
 
     max-width: 100%;
 
     position: relative;
 
-    margin: auto;
+    margin: 0 auto;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     border-radius: 35px;
 
     overflow: hidden;
 }
+
+
+/* =========================================================
+   FIRST IMAGE CARD
+========================================================= */
 
 .image-card-one {
     background: #ffe9ec;
@@ -296,21 +389,28 @@ body {
         0 15px 35px rgba(199, 25, 46, 0.12);
 }
 
+
+/* =========================================================
+   SECOND IMAGE CARD
+========================================================= */
+
 .image-card-two {
-    background: #fff0e9;
+    background: #ffe9ec;
 
     box-shadow:
-        0 15px 35px rgba(160, 70, 40, 0.10);
+        0 15px 35px rgba(199, 25, 46, 0.12);
 }
 
 
+/* =========================================================
+   LARGE IMAGE CIRCLE
+========================================================= */
 
 .image-circle {
     width: 340px;
-
     height: 340px;
 
-    padding: 8px;
+    padding: 0;
 
     position: relative;
 
@@ -320,13 +420,22 @@ body {
 
     background: #c7192e;
 
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
     box-shadow:
         0 20px 45px rgba(120, 20, 30, 0.25);
 }
 
+
+/* =========================================================
+   IMAGE INSIDE CIRCLE
+========================================================= */
+
 .image-circle img {
     width: 100%;
-
     height: 100%;
 
     display: block;
@@ -336,10 +445,12 @@ body {
     border-radius: 50%;
 
     border: 6px solid #ffffff;
-   
 }
 
 
+/* =========================================================
+   ORBIT
+========================================================= */
 
 .orbit {
     position: absolute;
@@ -351,7 +462,6 @@ body {
 
 .orbit-one {
     width: 445px;
-
     height: 445px;
 
     animation: rotate 15s linear infinite;
@@ -359,7 +469,6 @@ body {
 
 .orbit-two {
     width: 390px;
-
     height: 390px;
 
     border-color: #df7d88;
@@ -368,19 +477,19 @@ body {
 }
 
 
-
+/* =========================================================
+   ORBIT DOT 1
+========================================================= */
 
 .orbit-one::before {
     content: "";
 
     width: 14px;
-
     height: 14px;
 
     position: absolute;
 
     top: 15px;
-
     left: 70px;
 
     border-radius: 50%;
@@ -390,17 +499,20 @@ body {
     border: 3px solid white;
 }
 
+
+/* =========================================================
+   ORBIT DOT 2
+========================================================= */
+
 .orbit-one::after {
     content: "";
 
     width: 10px;
-
     height: 10px;
 
     position: absolute;
 
     right: 50px;
-
     bottom: 25px;
 
     border-radius: 50%;
@@ -411,9 +523,11 @@ body {
 }
 
 
+/* =========================================================
+   ORBIT ANIMATION
+========================================================= */
 
 @keyframes rotate {
-
     from {
         transform: rotate(0deg);
     }
@@ -421,11 +535,9 @@ body {
     to {
         transform: rotate(360deg);
     }
-
 }
 
 @keyframes rotateReverse {
-
     from {
         transform: rotate(360deg);
     }
@@ -433,20 +545,22 @@ body {
     to {
         transform: rotate(0deg);
     }
-
 }
 
 
-
+/* =========================================================
+   WAVES
+========================================================= */
 
 .wave-transition {
-    width: 100%;
-
+    width: 100vw;
     height: 35px;
 
     position: relative;
 
     overflow: hidden;
+
+    margin-left: calc(50% - 50vw);
 }
 
 .wave-one {
@@ -457,13 +571,11 @@ body {
     content: "";
 
     width: 110%;
-
     height: 60px;
 
     position: absolute;
 
     left: -5%;
-
     top: -30px;
 
     background: #fff7f7;
@@ -479,13 +591,11 @@ body {
     content: "";
 
     width: 110%;
-
     height: 60px;
 
     position: absolute;
 
     left: -5%;
-
     top: -30px;
 
     background: #fffaf5;
@@ -494,6 +604,9 @@ body {
 }
 
 
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
 
 .how-section {
     width: 100%;
@@ -550,7 +663,9 @@ body {
 }
 
 
-
+/* =========================================================
+   PROCESS ROW
+========================================================= */
 
 .process-row {
     width: 100%;
@@ -567,8 +682,6 @@ body {
 
     gap: 20px;
 }
-
-
 
 .process-card {
     width: 25%;
@@ -605,10 +718,12 @@ body {
 }
 
 
+/* =========================================================
+   PROCESS ICON
+========================================================= */
 
 .process-icon {
     width: 70px;
-
     height: 70px;
 
     position: relative;
@@ -616,12 +731,13 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     border-radius: 50%;
 
     background: #ffffff;
+
+    color: #d62828;
 
     font-size: 32px;
 
@@ -629,13 +745,10 @@ body {
         0 5px 18px rgba(120, 20, 30, 0.10);
 }
 
-
-
 .process-icon::before {
     content: "";
 
     width: 82px;
-
     height: 82px;
 
     position: absolute;
@@ -647,7 +760,17 @@ body {
     animation: rotateIcon 7s linear infinite;
 }
 
+.process-icon svg {
+    width: 40px;
+    height: 40px;
 
+    stroke-width: 2;
+}
+
+
+/* =========================================================
+   PROCESS CONTENT
+========================================================= */
 
 .process-number {
     margin-top: 18px;
@@ -661,9 +784,6 @@ body {
     letter-spacing: 2px;
 }
 
-
-
-
 .process-card h3 {
     margin: 6px 0 7px;
 
@@ -675,7 +795,6 @@ body {
 
     font-weight: 600;
 }
-
 
 .process-card p {
     max-width: 190px;
@@ -690,8 +809,11 @@ body {
 }
 
 
-@keyframes rotateIcon {
+/* =========================================================
+   ICON ANIMATION
+========================================================= */
 
+@keyframes rotateIcon {
     from {
         transform: rotate(0deg);
     }
@@ -699,38 +821,38 @@ body {
     to {
         transform: rotate(360deg);
     }
-
 }
 
 
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 1100px) {
 
     .section-inner {
-        gap: 45px;
+        column-gap: 60px;
     }
 
     .image-card {
         width: 420px;
-
         height: 420px;
     }
 
     .image-circle {
         width: 285px;
-
         height: 285px;
+
+        padding: 0;
     }
 
     .orbit-one {
         width: 370px;
-
         height: 370px;
     }
 
     .orbit-two {
         width: 325px;
-
         height: 325px;
     }
 
@@ -751,31 +873,23 @@ body {
     .process-card h3 {
         font-size: 20px;
     }
-
 }
 
-.process-icon {
-    color: #d62828;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.process-icon svg {
-    width: 40px;
-    height: 40px;
-    stroke-width: 2;
-}
-/* =========================================
-   TABLET / SMALL SCREEN
-========================================= */
+/* =========================================================
+   850px
+========================================================= */
 
 @media (max-width: 850px) {
+
+    .image-content-section {
+        padding: 65px 25px;
+    }
 
     .section-inner {
         grid-template-columns: 1fr;
 
-        gap: 45px;
+        gap: 55px;
 
         text-align: center;
     }
@@ -783,23 +897,20 @@ body {
     .feature-content {
         max-width: 650px;
 
-        margin: auto;
+        margin: 0 auto;
+
+        order: 1;
     }
 
     .feature-content p {
         margin-left: auto;
-
         margin-right: auto;
     }
 
     .image-card {
         order: 2;
 
-        margin: auto;
-    }
-
-    .feature-content {
-        order: 1;
+        margin: 0 auto;
     }
 
     .process-row {
@@ -813,13 +924,12 @@ body {
     .process-card {
         width: 100%;
     }
-
 }
 
 
-/* =========================================
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 600px) {
 
@@ -842,27 +952,45 @@ body {
     }
 
 
-    /* Buttons */
+    /* BUTTONS */
 
     .welcome-buttons {
         flex-direction: column;
 
         align-items: center;
 
-        gap: 12px;
+        gap: 15px;
     }
 
     .action-button {
         width: 100%;
+        max-width: 320px;
 
-        max-width: 280px;
+        min-height: 75px;
+
+        padding: 15px 24px;
+    }
+
+    .action-button strong {
+        font-size: 20px;
+    }
+
+    .action-button small {
+        font-size: 13px;
     }
 
 
-    /* Image sections */
+    /* FULL WIDTH BACKGROUND */
 
     .image-content-section {
-        padding: 50px 20px;
+        width: 100vw !important;
+        max-width: 100vw !important;
+
+        padding: 55px 20px;
+    }
+
+    .section-inner {
+        gap: 45px;
     }
 
     .feature-content h2 {
@@ -874,36 +1002,37 @@ body {
     }
 
 
-    /* Image */
+    /* IMAGE CARD */
 
     .image-card {
         width: 340px;
-
         height: 340px;
 
         max-width: 100%;
     }
 
-    .image-circle {
-        width: 230px;
 
-        height: 230px;
+    /* BIG CIRCLE */
+
+    .image-circle {
+        width: 280px;
+        height: 280px;
+
+        padding: 0;
     }
 
     .orbit-one {
         width: 290px;
-
         height: 290px;
     }
 
     .orbit-two {
         width: 255px;
-
         height: 255px;
     }
 
 
-    /* How It Works */
+    /* HOW IT WORKS */
 
     .how-section {
         padding: 50px 20px 60px;
@@ -924,13 +1053,12 @@ body {
 
         min-height: 230px;
     }
-
 }
 
 
-/* =========================================
+/* =========================================================
    SMALL MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 450px) {
 
@@ -952,32 +1080,53 @@ body {
         font-size: 15px;
     }
 
+
+    /* BUTTON */
+
+    .action-button {
+        width: 100%;
+        max-width: 290px;
+
+        min-height: 72px;
+    }
+
+    .action-button strong {
+        font-size: 19px;
+    }
+
+    .action-button small {
+        font-size: 12px;
+    }
+
+
+    /* IMAGE CARD */
+
     .image-card {
         width: 290px;
-
         height: 290px;
     }
 
-    .image-circle {
-        width: 195px;
 
-        height: 195px;
+    /* LARGE CIRCLE */
+
+    .image-circle {
+        width: 230px;
+        height: 230px;
+
+        padding: 0;
     }
 
     .orbit-one {
         width: 250px;
-
         height: 250px;
     }
 
     .orbit-two {
         width: 220px;
-
         height: 220px;
     }
 
     .how-header h2 {
         font-size: 34px;
     }
-
 }

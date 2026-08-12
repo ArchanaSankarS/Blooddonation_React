@@ -1,0 +1,494 @@
+* {
+    box-sizing: border-box;
+}
+
+.requester-page {
+    min-height: 100vh;
+    width: 100%;
+
+    padding: 35px 20px 60px;
+
+    background: #fff6f7;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.requester-header {
+    max-width: 1100px;
+
+    margin: 0 auto 30px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.requester-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.title-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff0f2;
+
+    color: #c7192e;
+}
+
+.requester-title h1 {
+    margin: 0;
+
+    color: #333;
+
+    font-size: 28px;
+}
+
+.requester-title p {
+    margin: 6px 0 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout-button {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 11px 17px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #c7192e;
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.logout-button:hover {
+    background: #a91527;
+}
+
+
+/* =========================
+   SEARCH CARD
+========================= */
+
+.search-card {
+    max-width: 1100px;
+
+    margin: 0 auto 30px;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(120, 20, 30, 0.08);
+}
+
+.search-card h2 {
+    margin: 0 0 18px;
+
+    color: #333;
+
+    font-size: 21px;
+}
+
+
+/* =========================
+   SEARCH FORM
+========================= */
+
+.search-form {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr auto auto;
+
+    gap: 12px;
+}
+
+.search-form input,
+.search-form select {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 13px;
+
+    border: 1px solid #e1d5d7;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #fffafa;
+
+    color: #333;
+
+    font-size: 14px;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+    border-color: #c7192e;
+
+    box-shadow:
+        0 0 0 3px rgba(199, 25, 46, 0.07);
+}
+
+
+/* =========================
+   SEARCH BUTTON
+========================= */
+
+.search-button {
+    height: 48px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #c7192e;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.search-button:hover {
+    background: #a91527;
+}
+
+
+/* =========================
+   CLEAR BUTTON
+========================= */
+
+.clear-button {
+    height: 48px;
+
+    padding: 0 20px;
+
+    border: 1px solid #c7192e;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #c7192e;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.clear-button:hover {
+    background: #fff0f2;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.requester-error {
+    max-width: 1100px;
+
+    margin: 0 auto 20px;
+
+    padding: 14px;
+
+    border-radius: 9px;
+
+    background: #fff0f0;
+
+    color: #c7192e;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading {
+    text-align: center;
+
+    color: #777;
+
+    padding: 30px;
+}
+
+
+/* =========================
+   DONOR SECTION
+========================= */
+
+.donor-section {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================
+   DONOR CARD
+========================= */
+
+.donor-card {
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(120, 20, 30, 0.08);
+
+    transition: 0.2s;
+}
+
+.donor-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(120, 20, 30, 0.13);
+}
+
+
+/* =========================
+   BLOOD CIRCLE
+========================= */
+
+.blood-circle {
+    width: 60px;
+    height: 60px;
+
+    margin-bottom: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff0f2;
+
+    color: #c7192e;
+
+    font-size: 16px;
+
+    font-weight: 800;
+}
+
+
+/* =========================
+   DONOR NAME
+========================= */
+
+.donor-card h2 {
+    margin: 0 0 15px;
+
+    color: #333;
+
+    font-size: 21px;
+}
+
+
+/* =========================
+   DONOR INFO
+========================= */
+
+.donor-info {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin-bottom: 11px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+.donor-info svg {
+    flex-shrink: 0;
+
+    color: #c7192e;
+}
+
+
+/* =========================
+   AVAILABLE BADGE
+========================= */
+
+.available-badge {
+    margin-top: 18px;
+
+    padding: 9px 12px;
+
+    border-radius: 7px;
+
+    background: #eaf8ee;
+
+    color: #238443;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* =========================
+   NO DONORS
+========================= */
+
+.no-donors {
+    grid-column: 1 / -1;
+
+    padding: 55px 20px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px rgba(120, 20, 30, 0.08);
+}
+
+.no-donors h3 {
+    margin: 15px 0 8px;
+
+    color: #333;
+
+    font-size: 20px;
+}
+
+.no-donors p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    .requester-page {
+        padding: 25px 15px 40px;
+    }
+
+    .requester-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .logout-button {
+        align-self: flex-end;
+    }
+
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+
+    .search-button,
+    .clear-button {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .requester-title h1 {
+        font-size: 22px;
+    }
+
+    .requester-title p {
+        font-size: 13px;
+    }
+
+    .search-card {
+        padding: 18px;
+    }
+
+}
