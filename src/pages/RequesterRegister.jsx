@@ -5,6 +5,7 @@ import { Heart, ArrowLeft } from "lucide-react";
 import "./RequesterRegister.css";
 
 function RequesterRegister() {
+
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -16,109 +17,256 @@ function RequesterRegister() {
     });
 
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    // =====================================
+    // INPUT
+    // =====================================
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+
+        const {
+            name,
+            value
+        } = e.target;
 
         setFormData((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: value
         }));
 
         setError("");
     };
 
-    const handleSubmit = (e) => {
+    // =====================================
+    // SUBMIT
+    // =====================================
+
+    const handleSubmit = async (e) => {
+
         e.preventDefault();
+
+        setError("");
 
         const {
             name,
             phone,
             email,
             password,
-            city,
+            city
         } = formData;
 
+        // =====================================
+        // VALIDATION
+        // =====================================
+
         if (!name.trim()) {
-            setError("Please enter your full name.");
+
+            setError(
+                "Please enter your full name."
+            );
+
             return;
         }
 
         if (!phone.trim()) {
-            setError("Please enter your phone number.");
+
+            setError(
+                "Please enter your phone number."
+            );
+
+            return;
+        }
+
+        if (!/^[0-9]{10}$/.test(
+            phone.trim()
+        )) {
+
+            setError(
+                "Please enter a valid 10-digit phone number."
+            );
+
             return;
         }
 
         if (!email.trim()) {
-            setError("Please enter your email.");
+
+            setError(
+                "Please enter your email."
+            );
+
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+            email.trim()
+        )) {
+
+            setError(
+                "Please enter a valid email address."
+            );
+
             return;
         }
 
         if (!password) {
-            setError("Please create a password.");
-            return;
-        }
 
-        if (!city.trim()) {
-            setError("Please enter your city.");
-            return;
-        }
+            setError(
+                "Please create a password."
+            );
 
-        if (!/^[0-9]{10}$/.test(phone.trim())) {
-            setError("Please enter a valid 10-digit phone number.");
-            return;
-        }
-
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-            setError("Please enter a valid email address.");
             return;
         }
 
         if (password.length < 6) {
-            setError("Password must contain at least 6 characters.");
+
+            setError(
+                "Password must contain at least 6 characters."
+            );
+
             return;
         }
 
-        /*
-         * Temporary frontend registration.
-         *
-         * Later, this section should call the Spring Boot
-         * registration API instead.
-         */
+        if (!city.trim()) {
 
-        const user = {
-            name: name.trim(),
-            phone: phone.trim(),
-            email: email.trim(),
-            city: city.trim(),
-            role: "REQUESTER",
-        };
+            setError(
+                "Please enter your city."
+            );
 
-        localStorage.setItem(
-            "user",
-            JSON.stringify(user)
-        );
+            return;
+        }
 
-        localStorage.setItem(
-            "role",
-            "REQUESTER"
-        );
+        try {
 
-        // Registration complete.
-        // Directly open requester dashboard.
-        navigate("/requester-home");
+            setLoading(true);
+
+            // =====================================
+            // CREATE REQUESTER IN BACKEND
+            // =====================================
+
+            const response = await fetch(
+                "http://localhost:8081/api/auth/register",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        name:
+                            name.trim(),
+
+                        phone:
+                            phone.trim(),
+
+                        email:
+                            email.trim(),
+
+                        password:
+                            password,
+
+                        role:
+                            "REQUESTER",
+
+                        city:
+                            city.trim()
+
+                    })
+                }
+            );
+
+            const data =
+                await response.json();
+
+            console.log(
+                "REQUESTER REGISTER RESPONSE:",
+                data
+            );
+
+            if (!response.ok) {
+
+                setError(
+                    data.error ||
+                    data.message ||
+                    "Requester registration failed."
+                );
+
+                return;
+            }
+
+            // =====================================
+            // GET CREATED USER
+            // =====================================
+
+            const createdUser =
+                data.user || data;
+
+            if (!createdUser.id) {
+
+                setError(
+                    "Registration successful but user ID was not received."
+                );
+
+                return;
+            }
+
+            // =====================================
+            // AUTO LOGIN
+            // =====================================
+
+            localStorage.setItem(
+                "user",
+                JSON.stringify(createdUser)
+            );
+
+            localStorage.setItem(
+                "role",
+                "REQUESTER"
+            );
+
+            // =====================================
+            // GO REQUESTER HOME
+            // =====================================
+
+            navigate("/requester-home");
+
+        } catch (err) {
+
+            console.error(
+                "REQUESTER REGISTER ERROR:",
+                err
+            );
+
+            setError(
+                "Cannot connect to backend. Make sure Spring Boot is running on port 8081."
+            );
+
+        } finally {
+
+            setLoading(false);
+
+        }
     };
 
     return (
+
         <div className="requester-register-page">
 
             <button
                 type="button"
                 className="requester-register-back"
-                onClick={() => navigate("/requester-rules")}
+                onClick={() =>
+                    navigate("/requester-rules")
+                }
             >
+
                 <ArrowLeft size={17} />
+
                 Back to Rules
+
             </button>
 
             <div className="requester-register-card">
@@ -126,10 +274,12 @@ function RequesterRegister() {
                 <div className="requester-register-header">
 
                     <div className="requester-register-icon">
+
                         <Heart
                             size={35}
                             fill="currentColor"
                         />
+
                     </div>
 
                     <p className="requester-register-label">
@@ -137,7 +287,13 @@ function RequesterRegister() {
                     </p>
 
                     <h1>
-                        Requester <span>Registration</span>
+
+                        Requester{" "}
+
+                        <span>
+                            Registration
+                        </span>
+
                     </h1>
 
                     <p>
@@ -154,7 +310,10 @@ function RequesterRegister() {
 
                     <div className="requester-form-grid">
 
+                        {/* NAME */}
+
                         <div className="requester-form-group">
+
                             <label>
                                 Full Name
                             </label>
@@ -166,9 +325,13 @@ function RequesterRegister() {
                                 value={formData.name}
                                 onChange={handleChange}
                             />
+
                         </div>
 
+                        {/* PHONE */}
+
                         <div className="requester-form-group">
+
                             <label>
                                 Phone Number
                             </label>
@@ -181,9 +344,13 @@ function RequesterRegister() {
                                 onChange={handleChange}
                                 maxLength="10"
                             />
+
                         </div>
 
+                        {/* EMAIL */}
+
                         <div className="requester-form-group">
+
                             <label>
                                 Email
                             </label>
@@ -195,9 +362,13 @@ function RequesterRegister() {
                                 value={formData.email}
                                 onChange={handleChange}
                             />
+
                         </div>
 
+                        {/* PASSWORD */}
+
                         <div className="requester-form-group">
+
                             <label>
                                 Password
                             </label>
@@ -209,9 +380,13 @@ function RequesterRegister() {
                                 value={formData.password}
                                 onChange={handleChange}
                             />
+
                         </div>
 
+                        {/* CITY */}
+
                         <div className="requester-form-group">
+
                             <label>
                                 City
                             </label>
@@ -223,26 +398,36 @@ function RequesterRegister() {
                                 value={formData.city}
                                 onChange={handleChange}
                             />
+
                         </div>
 
                     </div>
 
                     {error && (
+
                         <div className="requester-register-error">
                             {error}
                         </div>
+
                     )}
 
                     <button
                         type="submit"
                         className="requester-register-submit"
+                        disabled={loading}
                     >
-                        Register as Requester
+
+                        {loading
+                            ? "Creating Account..."
+                            : "Register as Requester"}
+
                     </button>
 
                     <p className="requester-register-note">
-                        Please provide accurate information for
-                        genuine blood requirements.
+
+                        Please provide accurate information
+                        for genuine blood requirements.
+
                     </p>
 
                 </form>

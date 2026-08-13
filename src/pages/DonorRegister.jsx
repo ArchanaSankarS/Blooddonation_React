@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Heart, ArrowLeft } from "lucide-react";
+
 import "./DonorRegister.css";
 
 function DonorRegister() {
+
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -15,7 +17,6 @@ function DonorRegister() {
         bloodGroup: "",
         gender: "",
         age: "",
-        weight: "",
         lastDonationDate: ""
     });
 
@@ -23,112 +24,227 @@ function DonorRegister() {
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
+
         const { name, value } = e.target;
 
-        setFormData({
-            ...formData,
+        setFormData((prev) => ({
+            ...prev,
             [name]: value
-        });
+        }));
+
+        setError("");
     };
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         setError("");
 
-        if (
-            !formData.name ||
-            !formData.phone ||
-            !formData.email ||
-            !formData.password ||
-            !formData.city ||
-            !formData.bloodGroup ||
-            !formData.age ||
-            !formData.weight
-        ) {
-            setError("Please fill all required fields.");
+        // =====================================
+        // VALIDATION
+        // =====================================
+
+        if (!formData.name.trim()) {
+            setError("Full Name is required.");
+            return;
+        }
+
+        if (!formData.phone.trim()) {
+            setError("Phone Number is required.");
+            return;
+        }
+
+        if (!/^[0-9]{10}$/.test(formData.phone.trim())) {
+            setError("Enter a valid 10-digit phone number.");
+            return;
+        }
+
+        if (!formData.email.trim()) {
+            setError("Email is required.");
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+            formData.email.trim()
+        )) {
+            setError("Enter a valid email.");
+            return;
+        }
+
+        if (!formData.password.trim()) {
+            setError("Password is required.");
+            return;
+        }
+
+        if (formData.password.length < 6) {
+            setError(
+                "Password must contain at least 6 characters."
+            );
+            return;
+        }
+
+        if (!formData.city.trim()) {
+            setError("City is required.");
+            return;
+        }
+
+        if (!formData.bloodGroup) {
+            setError("Blood Group is required.");
+            return;
+        }
+
+        if (!formData.age) {
+            setError("Age is required.");
+            return;
+        }
+
+        const age = Number(formData.age);
+
+        if (age < 18 || age > 60) {
+            setError(
+                "Donor age must be between 18 and 60."
+            );
             return;
         }
 
         try {
+
             setLoading(true);
 
-            // =========================
-            // 1. CREATE USER
-            // =========================
+            // =====================================
+            // CREATE USER
+            // =====================================
 
             const userResponse = await fetch(
                 "http://localhost:8081/api/auth/register",
                 {
                     method: "POST",
+
                     headers: {
                         "Content-Type": "application/json"
                     },
+
                     body: JSON.stringify({
-                        name: formData.name,
-                        phone: formData.phone,
-                        email: formData.email,
+
+                        name: formData.name.trim(),
+
+                        phone: formData.phone.trim(),
+
+                        email: formData.email.trim(),
+
                         password: formData.password,
+
                         role: "DONOR",
-                        city: formData.city
+
+                        city: formData.city.trim()
+
                     })
                 }
             );
 
-            const userData = await userResponse.json();
+            const userData =
+                await userResponse.json();
+
+            console.log(
+                "REGISTER USER RESPONSE:",
+                userData
+            );
 
             if (!userResponse.ok) {
+
                 setError(
-                    userData.error || "Registration failed."
+                    userData.error ||
+                    userData.message ||
+                    "Registration failed."
                 );
+
                 return;
             }
 
-            console.log("User created:", userData);
+            // =====================================
+            // IMPORTANT
+            // =====================================
 
-            // =========================
-            // 2. CREATE DONOR DETAILS
-            // =========================
+            const createdUser =
+                userData.user || userData;
+
+            if (!createdUser.id) {
+
+                setError(
+                    "User created but user ID was not received."
+                );
+
+                return;
+            }
+
+            // =====================================
+            // CREATE DONOR DETAILS
+            // =====================================
 
             const donorResponse = await fetch(
                 "http://localhost:8081/api/donor/save",
                 {
                     method: "POST",
+
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type":
+                            "application/json"
                     },
+
                     body: JSON.stringify({
-                        userId: userData.id,
-                        bloodGroup: formData.bloodGroup,
-                        gender: formData.gender,
-                        age: Number(formData.age),
-                        weight: Number(formData.weight),
-                        city: formData.city,
+
+                        userId:
+                            createdUser.id,
+
+                        bloodGroup:
+                            formData.bloodGroup,
+
+                        gender:
+                            formData.gender || null,
+
+                        age:
+                            Number(formData.age),
+
+                        city:
+                            formData.city.trim(),
+
                         lastDonationDate:
-                            formData.lastDonationDate || null,
+                            formData.lastDonationDate ||
+                            null,
+
                         available: true
+
                     })
                 }
             );
 
-            const donorData = await donorResponse.json();
+            const donorData =
+                await donorResponse.json();
+
+            console.log(
+                "DONOR RESPONSE:",
+                donorData
+            );
 
             if (!donorResponse.ok) {
+
                 setError(
-                    "Account created, but donor details could not be saved."
+                    donorData.error ||
+                    donorData.message ||
+                    "Donor details could not be saved."
                 );
+
                 return;
             }
 
-            console.log("Donor created:", donorData);
-
-            // =========================
-            // 3. AUTO LOGIN
-            // =========================
+            // =====================================
+            // AUTO LOGIN
+            // =====================================
 
             localStorage.setItem(
                 "user",
-                JSON.stringify(userData)
+                JSON.stringify(createdUser)
             );
 
             localStorage.setItem(
@@ -136,27 +252,39 @@ function DonorRegister() {
                 "DONOR"
             );
 
-            navigate("/donor-home");
+            // =====================================
+            // GO DONOR DASHBOARD
+            // =====================================
 
-        } catch (err) {
-            console.error(err);
+            navigate("/donor-dashboard");
+
+        } catch (error) {
+
+            console.error(
+                "DONOR REGISTRATION ERROR:",
+                error
+            );
 
             setError(
                 "Cannot connect to backend. Make sure Spring Boot is running on port 8081."
             );
 
         } finally {
+
             setLoading(false);
+
         }
     };
 
     return (
+
         <div className="donor-register-page">
 
-            {/* Back */}
             <button
                 className="register-back"
-                onClick={() => navigate("/donor-rules")}
+                onClick={() =>
+                    navigate("/donor-rules")
+                }
             >
                 <ArrowLeft size={18} />
                 Back
@@ -164,14 +292,15 @@ function DonorRegister() {
 
             <div className="donor-register-card">
 
-                {/* Header */}
                 <div className="register-header">
 
                     <div className="register-icon">
+
                         <Heart
                             size={30}
                             fill="currentColor"
                         />
+
                     </div>
 
                     <p className="register-label">
@@ -185,15 +314,13 @@ function DonorRegister() {
                     </h1>
 
                     <p>
-                        Enter your details to create your
-                        donor account.
+                        Enter your details to
+                        create your donor account.
                     </p>
 
                 </div>
 
                 <form onSubmit={handleSubmit}>
-
-                    {/* ================= PERSONAL DETAILS ================= */}
 
                     <h3 className="form-section-title">
                         Personal Details
@@ -201,11 +328,10 @@ function DonorRegister() {
 
                     <div className="form-grid">
 
-                        {/* Full Name */}
                         <div className="form-group">
 
                             <label>
-                                Full Name 
+                                Full Name *
                             </label>
 
                             <input
@@ -218,28 +344,27 @@ function DonorRegister() {
 
                         </div>
 
-                        {/* Phone */}
                         <div className="form-group">
 
                             <label>
-                                Phone Number 
+                                Phone Number *
                             </label>
 
                             <input
                                 type="tel"
                                 name="phone"
-                                placeholder="Enter phone number"
+                                placeholder="Enter 10-digit phone number"
                                 value={formData.phone}
                                 onChange={handleChange}
+                                maxLength="10"
                             />
 
                         </div>
 
-                        {/* Email */}
                         <div className="form-group">
 
                             <label>
-                                Email 
+                                Email *
                             </label>
 
                             <input
@@ -252,11 +377,10 @@ function DonorRegister() {
 
                         </div>
 
-                        {/* Password */}
                         <div className="form-group">
 
                             <label>
-                                Password 
+                                Password *
                             </label>
 
                             <input
@@ -269,11 +393,10 @@ function DonorRegister() {
 
                         </div>
 
-                        {/* City */}
                         <div className="form-group">
 
                             <label>
-                                City 
+                                City *
                             </label>
 
                             <input
@@ -286,7 +409,6 @@ function DonorRegister() {
 
                         </div>
 
-                        {/* Gender */}
                         <div className="form-group">
 
                             <label>
@@ -321,20 +443,16 @@ function DonorRegister() {
 
                     </div>
 
-
-                    {/* ================= DONOR DETAILS ================= */}
-
                     <h3 className="form-section-title donor-details-title">
                         Donor Details
                     </h3>
 
                     <div className="form-grid">
 
-                        {/* Blood Group */}
                         <div className="form-group">
 
                             <label>
-                                Blood Group 
+                                Blood Group *
                             </label>
 
                             <select
@@ -360,28 +478,24 @@ function DonorRegister() {
 
                         </div>
 
-                        {/* Age */}
                         <div className="form-group">
 
                             <label>
-                                Age 
+                                Age *
                             </label>
 
                             <input
                                 type="number"
                                 name="age"
-                                placeholder="Enter age"
                                 min="18"
                                 max="60"
+                                placeholder="Enter age"
                                 value={formData.age}
                                 onChange={handleChange}
                             />
 
                         </div>
 
-                    
-
-                        {/* Last Donation */}
                         <div className="form-group">
 
                             <label>
@@ -391,7 +505,9 @@ function DonorRegister() {
                             <input
                                 type="date"
                                 name="lastDonationDate"
-                                value={formData.lastDonationDate}
+                                value={
+                                    formData.lastDonationDate
+                                }
                                 onChange={handleChange}
                             />
 
@@ -399,31 +515,32 @@ function DonorRegister() {
 
                     </div>
 
-
-                    {/* Error */}
                     {error && (
+
                         <p className="register-error">
                             {error}
                         </p>
+
                     )}
 
-
-                    {/* Submit */}
                     <button
                         type="submit"
                         className="register-submit"
                         disabled={loading}
                     >
+
                         {loading
                             ? "Creating Account..."
                             : "Create Donor Account"}
+
                     </button>
 
-
-                    {/* Note */}
                     <p className="register-note">
-                        By registering, you confirm that the
-                        information provided is accurate.
+
+                        By registering, you confirm
+                        that the information provided
+                        is accurate.
+
                     </p>
 
                 </form>

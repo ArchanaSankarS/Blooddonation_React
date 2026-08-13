@@ -24,25 +24,48 @@ function Requester() {
 
     useEffect(() => {
 
-        const savedUser = localStorage.getItem("user");
+    const savedUser =
+        localStorage.getItem("user");
 
-        if (!savedUser) {
-            navigate("/auth/REQUESTER");
-            return;
-        }
+    const savedRole =
+        localStorage.getItem("role");
 
-        try {
-            setUser(JSON.parse(savedUser));
-        } catch (err) {
-            localStorage.removeItem("user");
-            navigate("/auth/REQUESTER");
-            return;
-        }
+    if (!savedUser) {
 
-        loadDonors();
+        navigate("/auth/REQUESTER");
 
-    }, []);
+        return;
+    }
 
+    if (savedRole !== "REQUESTER") {
+
+        localStorage.removeItem("user");
+        localStorage.removeItem("role");
+
+        navigate("/auth/REQUESTER");
+
+        return;
+    }
+
+    try {
+
+        setUser(
+            JSON.parse(savedUser)
+        );
+
+    } catch (err) {
+
+        localStorage.removeItem("user");
+        localStorage.removeItem("role");
+
+        navigate("/auth/REQUESTER");
+
+        return;
+    }
+
+    loadDonors();
+
+}, [navigate]);
     const loadDonors = async () => {
 
         setLoading(true);
