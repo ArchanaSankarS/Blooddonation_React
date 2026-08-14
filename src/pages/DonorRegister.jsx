@@ -41,9 +41,7 @@ function DonorRegister() {
 
         setError("");
 
-        // =====================================
-        // VALIDATION
-        // =====================================
+   //validation
 
         if (!formData.name.trim()) {
             setError("Full Name is required.");
@@ -111,10 +109,7 @@ function DonorRegister() {
         try {
 
             setLoading(true);
-
-            // =====================================
-            // CREATE USER
-            // =====================================
+//user creation
 
             const userResponse = await fetch(
                 "http://localhost:8081/api/auth/register",
@@ -162,10 +157,6 @@ function DonorRegister() {
                 return;
             }
 
-            // =====================================
-            // IMPORTANT
-            // =====================================
-
             const createdUser =
                 userData.user || userData;
 
@@ -178,9 +169,7 @@ function DonorRegister() {
                 return;
             }
 
-            // =====================================
-            // CREATE DONOR DETAILS
-            // =====================================
+   //create donor details
 
             const donorResponse = await fetch(
                 "http://localhost:8081/api/donor/save",
@@ -237,10 +226,7 @@ function DonorRegister() {
 
                 return;
             }
-
-            // =====================================
-            // AUTO LOGIN
-            // =====================================
+//auto login
 
             localStorage.setItem(
                 "user",
@@ -251,10 +237,7 @@ function DonorRegister() {
                 "role",
                 "DONOR"
             );
-
-            // =====================================
-            // GO DONOR DASHBOARD
-            // =====================================
+//donor dashbaord
 
             navigate("/donor-dashboard");
 

@@ -19,9 +19,7 @@ function RequesterRegister() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // =====================================
-    // INPUT
-    // =====================================
+//Input
 
     const handleChange = (e) => {
 
@@ -38,9 +36,7 @@ function RequesterRegister() {
         setError("");
     };
 
-    // =====================================
-    // SUBMIT
-    // =====================================
+ //submit
 
     const handleSubmit = async (e) => {
 
@@ -56,9 +52,7 @@ function RequesterRegister() {
             city
         } = formData;
 
-        // =====================================
-        // VALIDATION
-        // =====================================
+  //validation
 
         if (!name.trim()) {
 
@@ -140,9 +134,7 @@ function RequesterRegister() {
 
             setLoading(true);
 
-            // =====================================
-            // CREATE REQUESTER IN BACKEND
-            // =====================================
+//create requester in backend
 
             const response = await fetch(
                 "http://localhost:8081/api/auth/register",
@@ -196,10 +188,7 @@ function RequesterRegister() {
 
                 return;
             }
-
-            // =====================================
-            // GET CREATED USER
-            // =====================================
+//Get created user
 
             const createdUser =
                 data.user || data;
@@ -212,10 +201,7 @@ function RequesterRegister() {
 
                 return;
             }
-
-            // =====================================
-            // AUTO LOGIN
-            // =====================================
+//Auto login
 
             localStorage.setItem(
                 "user",
@@ -227,9 +213,7 @@ function RequesterRegister() {
                 "REQUESTER"
             );
 
-            // =====================================
-            // GO REQUESTER HOME
-            // =====================================
+       
 
             navigate("/requester-home");
 

@@ -54,9 +54,7 @@ function Auth() {
             "Get help when you need it",
         ];
 
-    // =====================================
-    // CHECK PHONE / EMAIL
-    // =====================================
+ //check mail or phnnumber
 
     const handleCheckUser = async (e) => {
 
@@ -100,10 +98,7 @@ function Auth() {
 
                 return;
             }
-
-            // =====================================
-            // EXISTING USER
-            // =====================================
+//existing user
 
             if (data.exists) {
 
@@ -115,9 +110,7 @@ function Auth() {
 
             }
 
-            // =====================================
-            // NEW USER
-            // =====================================
+     //new user
 
             else {
 
@@ -147,9 +140,7 @@ function Auth() {
         }
     };
 
-    // =====================================
-    // LOGIN
-    // =====================================
+//login
 
     const handleLogin = async (e) => {
 
@@ -226,10 +217,7 @@ function Auth() {
 
             const loggedInRole =
                 backendRole.toString().toUpperCase();
-
-            // =====================================
-            // ROLE CHECK
-            // =====================================
+//role check
 
             if (currentRole !== loggedInRole) {
 
@@ -240,10 +228,7 @@ function Auth() {
                 return;
             }
 
-            // =====================================
-            // SAVE USER
-            // =====================================
-
+        //user saved
             localStorage.setItem(
                 "user",
                 JSON.stringify(user)
@@ -283,11 +268,7 @@ function Auth() {
             setLoading(false);
         }
     };
-
-    // =====================================
-    // BACK
-    // =====================================
-
+//back
     const handleBack = () => {
 
         if (step === "password") {
@@ -362,9 +343,7 @@ function Auth() {
                         {pageDescription}
                     </p>
 
-                    {/* ================================= */}
-                    {/* STEP 1 - PHONE / EMAIL */}
-                    {/* ================================= */}
+                  
 
                     {step === "login" && (
 
@@ -417,10 +396,7 @@ function Auth() {
 
                     )}
 
-                    {/* ================================= */}
-                    {/* STEP 2 - PASSWORD */}
-                    {/* ================================= */}
-
+                 
                     {step === "password" && (
 
                         <form onSubmit={handleLogin}>

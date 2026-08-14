@@ -28,9 +28,7 @@ function DonorDashboard() {
     const [loading, setLoading] = useState(true);
 
 
-    // ==========================================
-    // LOAD DONOR
-    // ==========================================
+//load donor
 
     useEffect(() => {
 
@@ -117,10 +115,7 @@ function DonorDashboard() {
 
     }, [navigate]);
 
-
-    // ==========================================
-    // AVAILABILITY
-    // ==========================================
+//Availability
 
     const handleAvailability = async () => {
 
@@ -174,10 +169,7 @@ function DonorDashboard() {
         }
     };
 
-
-    // ==========================================
-    // LOGOUT
-    // ==========================================
+//logout
 
     const handleLogout = () => {
 
@@ -187,10 +179,6 @@ function DonorDashboard() {
         navigate("/");
     };
 
-
-    // ==========================================
-    // LOADING
-    // ==========================================
 
     if (loading) {
 
@@ -221,18 +209,13 @@ function DonorDashboard() {
     }
 
 
-    // ==========================================
-    // DASHBOARD
-    // ==========================================
 
     return (
 
         <div className="donor-dashboard">
 
 
-            {/* ==================================
-                HEADER
-            ================================== */}
+          
 
             <header className="dashboard-header">
 
@@ -279,16 +262,10 @@ function DonorDashboard() {
 
 
 
-            {/* ==================================
-                MAIN
-            ================================== */}
 
             <main className="dashboard-main">
 
 
-                {/* ==================================
-                    WELCOME
-                ================================== */}
 
                 <section className="welcome-section">
 
@@ -337,9 +314,6 @@ function DonorDashboard() {
 
 
 
-                {/* ==================================
-                    SUMMARY
-                ================================== */}
 
                 <section className="summary-grid">
 
@@ -457,9 +431,7 @@ function DonorDashboard() {
 
 
 
-                {/* ==================================
-                    AVAILABILITY
-                ================================== */}
+             
 
                 <section className="availability-card">
 
@@ -525,9 +497,7 @@ function DonorDashboard() {
 
 
 
-                {/* ==================================
-                    PROFILE OUTER BOX
-                ================================== */}
+            
 
                 <section className="details-section">
 
@@ -572,9 +542,6 @@ function DonorDashboard() {
 
 
 
-                    {/* ==================================
-                        DETAILS GRID
-                    ================================== */}
 
                     <div className="details-grid">
 
@@ -805,9 +772,7 @@ function DonorDashboard() {
 
 
 
-                {/* ==================================
-                    LAST DONATION
-                ================================== */}
+               
 
                 <section className="last-donation-card">
 
@@ -838,9 +803,6 @@ function DonorDashboard() {
 
 
 
-                {/* ==================================
-                    FOOTER
-                ================================== */}
 
                 <div className="dashboard-message">
 

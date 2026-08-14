@@ -38,7 +38,7 @@
 
     cursor: pointer;
 
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .register-back:hover {
@@ -134,7 +134,7 @@
 
     border-bottom: 1px solid #eee;
 
-    color: #333;
+    color: #a91527;
 
     font-size: 25px;
 
@@ -168,9 +168,9 @@
 .form-group label {
     margin-bottom: 8px;
 
-    color: #444;
+    color: #716d6d;
 
-    font-size: 13px;
+    font-size: 15px;
 
     font-weight: 700;
 }
@@ -183,7 +183,8 @@
 
     padding: 0 13px;
 
-    border: 1px solid #e1d5d7;
+   border: 1px solid #c7192c;
+
 
     border-radius: 9px;
 
@@ -236,8 +237,7 @@
     border: none;
 
     border-radius: 10px;
-
-    background: #c7192e;
+background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
 
     color: white;
 
@@ -273,9 +273,9 @@
 .register-note {
     margin: 15px 0 0;
 
-    color: #999;
+    color: #a91527;
 
-    font-size: 12px;
+    font-size: 16px;
 
     text-align: center;
 

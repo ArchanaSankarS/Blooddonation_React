@@ -54,9 +54,6 @@
 }
 
 
-/* =========================================
-   LEFT SIDE
-========================================= */
 
 .auth-left {
     position: relative;
@@ -117,9 +114,7 @@
 }
 
 
-/* =========================================
-   BLOOD ICON
-========================================= */
+
 
 .auth-blood-icon {
     position: relative;
@@ -143,9 +138,6 @@ margin: 0 auto 25px;
 }
 
 
-/* =========================================
-   LEFT TITLE
-========================================= */
 
 .auth-left h2 {
     position: relative;
@@ -460,7 +452,7 @@ margin: 0 auto 25px;
     border: none;
 
     border-radius: 10px;
-background: linear-gradient(135deg, #e96a79 0%, #d2818a 45%, #a9152a 100%);
+background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
 
     color: white;
 

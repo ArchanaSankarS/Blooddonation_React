@@ -17,49 +17,28 @@ function Requester() {
 
     const [user, setUser] = useState(null);
 
-    const [bloodGroup, setBloodGroup] =
-        useState("");
+    const [bloodGroup, setBloodGroup] = useState("");
+    const [city, setCity] = useState("");
 
-    const [city, setCity] =
-        useState("");
+    const [donors, setDonors] = useState([]);
 
-    const [donors, setDonors] =
-        useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-    const [loading, setLoading] =
-        useState(false);
-
-    const [error, setError] =
-        useState("");
-
-    // =====================================
-    // CONTACT VIEW
-    // =====================================
-
-    const [selectedDonor, setSelectedDonor] =
-        useState(null);
+    const [selectedDonor, setSelectedDonor] = useState(null);
+    const [contactLoading, setContactLoading] = useState(false);
 
 
-    // =====================================
+    // ==============================
     // CHECK REQUESTER LOGIN
-    // =====================================
+    // ==============================
 
     useEffect(() => {
 
-        const savedUser =
-            localStorage.getItem("user");
+        const savedUser = localStorage.getItem("user");
+        const savedRole = localStorage.getItem("role");
 
-        const savedRole =
-            localStorage.getItem("role");
-
-        if (!savedUser) {
-
-            navigate("/auth/REQUESTER");
-
-            return;
-        }
-
-        if (savedRole !== "REQUESTER") {
+        if (!savedUser || savedRole !== "REQUESTER") {
 
             localStorage.removeItem("user");
             localStorage.removeItem("role");
@@ -71,9 +50,7 @@ function Requester() {
 
         try {
 
-            setUser(
-                JSON.parse(savedUser)
-            );
+            setUser(JSON.parse(savedUser));
 
         } catch (err) {
 
@@ -90,9 +67,9 @@ function Requester() {
     }, [navigate]);
 
 
-    // =====================================
+    // ==============================
     // LOAD AVAILABLE DONORS
-    // =====================================
+    // ==============================
 
     const loadDonors = async () => {
 
@@ -105,14 +82,12 @@ function Requester() {
                 "http://localhost:8081/api/donor/available"
             );
 
-            const data =
-                await response.json();
+            const data = await response.json();
 
             if (!response.ok) {
 
                 setError(
-                    data.error ||
-                    "Unable to load donors."
+                    data.error || "Unable to load donors."
                 );
 
                 setDonors([]);
@@ -121,9 +96,7 @@ function Requester() {
             }
 
             setDonors(
-                Array.isArray(data)
-                    ? data
-                    : []
+                Array.isArray(data) ? data : []
             );
 
         } catch (err) {
@@ -134,17 +107,18 @@ function Requester() {
                 "Backend connection failed. Please make sure Spring Boot is running."
             );
 
+            setDonors([]);
+
         } finally {
 
             setLoading(false);
-
         }
     };
 
 
-    // =====================================
+    // ==============================
     // SEARCH
-    // =====================================
+    // ==============================
 
     const handleSearch = async (e) => {
 
@@ -158,8 +132,7 @@ function Requester() {
             let url =
                 "http://localhost:8081/api/donor/available";
 
-            const params =
-                new URLSearchParams();
+            const params = new URLSearchParams();
 
             if (bloodGroup) {
 
@@ -167,7 +140,6 @@ function Requester() {
                     "bloodGroup",
                     bloodGroup
                 );
-
             }
 
             if (city.trim()) {
@@ -176,28 +148,21 @@ function Requester() {
                     "city",
                     city.trim()
                 );
-
             }
 
             if (params.toString()) {
 
-                url +=
-                    "?" +
-                    params.toString();
-
+                url += "?" + params.toString();
             }
 
-            const response =
-                await fetch(url);
+            const response = await fetch(url);
 
-            const data =
-                await response.json();
+            const data = await response.json();
 
             if (!response.ok) {
 
                 setError(
-                    data.error ||
-                    "Search failed."
+                    data.error || "Search failed."
                 );
 
                 setDonors([]);
@@ -206,9 +171,7 @@ function Requester() {
             }
 
             setDonors(
-                Array.isArray(data)
-                    ? data
-                    : []
+                Array.isArray(data) ? data : []
             );
 
         } catch (err) {
@@ -224,14 +187,13 @@ function Requester() {
         } finally {
 
             setLoading(false);
-
         }
     };
 
 
-    // =====================================
+    // ==============================
     // CLEAR SEARCH
-    // =====================================
+    // ==============================
 
     const handleClear = () => {
 
@@ -239,13 +201,12 @@ function Requester() {
         setCity("");
 
         loadDonors();
-
     };
 
 
-    // =====================================
+    // ==============================
     // LOGOUT
-    // =====================================
+    // ==============================
 
     const handleLogout = () => {
 
@@ -253,35 +214,66 @@ function Requester() {
         localStorage.removeItem("role");
 
         navigate("/");
-
     };
 
 
-    // =====================================
+    // ==============================
     // VIEW CONTACT
-    // =====================================
+    // ==============================
 
-    const handleViewContact = (donor) => {
+    const handleViewContact = async (donor) => {
 
-        setSelectedDonor(donor);
+        setContactLoading(true);
+        setError("");
 
+        try {
+
+            const response = await fetch(
+                `http://localhost:8081/api/donor/contact/${donor.id}`
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                setError(
+                    data.error || "Unable to get contact details."
+                );
+
+                return;
+            }
+
+            setSelectedDonor(data);
+
+        } catch (err) {
+
+            console.error(err);
+
+            setError(
+                "Unable to load donor contact details."
+            );
+
+        } finally {
+
+            setContactLoading(false);
+        }
     };
 
 
-    // =====================================
+    // ==============================
     // CLOSE CONTACT
-    // =====================================
+    // ==============================
 
     const handleCloseContact = () => {
 
         setSelectedDonor(null);
-
     };
 
 
     return (
 
         <div className="requester-page">
+
 
             {/* ================= HEADER ================= */}
 
@@ -306,8 +298,7 @@ function Requester() {
 
                         <p>
                             Welcome,{" "}
-                            {user?.name ||
-                                "Requester"}
+                            {user?.name || "Requester"}
                         </p>
 
                     </div>
@@ -345,9 +336,7 @@ function Requester() {
                     <select
                         value={bloodGroup}
                         onChange={(e) =>
-                            setBloodGroup(
-                                e.target.value
-                            )
+                            setBloodGroup(e.target.value)
                         }
                     >
 
@@ -355,37 +344,14 @@ function Requester() {
                             All Blood Groups
                         </option>
 
-                        <option value="A+">
-                            A+
-                        </option>
-
-                        <option value="A-">
-                            A-
-                        </option>
-
-                        <option value="B+">
-                            B+
-                        </option>
-
-                        <option value="B-">
-                            B-
-                        </option>
-
-                        <option value="AB+">
-                            AB+
-                        </option>
-
-                        <option value="AB-">
-                            AB-
-                        </option>
-
-                        <option value="O+">
-                            O+
-                        </option>
-
-                        <option value="O-">
-                            O-
-                        </option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
 
                     </select>
 
@@ -395,9 +361,7 @@ function Requester() {
                         placeholder="Enter city"
                         value={city}
                         onChange={(e) =>
-                            setCity(
-                                e.target.value
-                            )
+                            setCity(e.target.value)
                         }
                     />
 
@@ -419,7 +383,9 @@ function Requester() {
                         className="clear-button"
                         onClick={handleClear}
                     >
+
                         Clear
+
                     </button>
 
                 </form>
@@ -477,87 +443,72 @@ function Requester() {
 
                     ) : (
 
-                        donors.map((donor) => {
+                        donors.map((donor) => (
 
-                            const donorName =
-                                donor.name ||
-                                donor.user?.name ||
-                                "Donor";
+                            <div
+                                className="donor-card"
+                                key={donor.id}
+                            >
 
-                            const donorCity =
-                                donor.city ||
-                                donor.user?.city ||
-                                "City not available";
+                                {/* BLOOD GROUP */}
 
-                            return (
+                                <div className="blood-circle">
 
-                                <div
-                                    className="donor-card"
-                                    key={donor.id}
-                                >
-
-                                    {/* BLOOD GROUP */}
-
-                                    <div className="blood-circle">
-
-                                        {donor.bloodGroup ||
-                                            "?"}
-
-                                    </div>
-
-
-                                    {/* NAME */}
-
-                                    <h2>
-                                        {donorName}
-                                    </h2>
-
-
-                                    {/* CITY */}
-
-                                    <div className="donor-info">
-
-                                        <MapPin
-                                            size={17}
-                                        />
-
-                                        <span>
-                                            {donorCity}
-                                        </span>
-
-                                    </div>
-
-
-                                    {/* AVAILABLE */}
-
-                                    <div className="available-badge">
-
-                                        Available for Donation
-
-                                    </div>
-
-
-                                    {/* VIEW CONTACT */}
-
-                                    <button
-                                        type="button"
-                                        className="view-contact-button"
-                                        onClick={() =>
-                                            handleViewContact(
-                                                donor
-                                            )
-                                        }
-                                    >
-
-                                        View Contact
-
-                                    </button>
+                                    {donor.bloodGroup || "?"}
 
                                 </div>
 
-                            );
 
-                        })
+                                {/* NAME */}
+
+                                <h2>
+                                    Donor
+                                </h2>
+
+
+                                {/* CITY */}
+
+                                <div className="donor-info">
+
+                                    <MapPin size={17} />
+
+                                    <span>
+                                        {donor.city ||
+                                            "City not available"}
+                                    </span>
+
+                                </div>
+
+
+                                {/* AVAILABLE */}
+
+                                <div className="available-badge">
+
+                                    Available for Donation
+
+                                </div>
+
+
+                                {/* VIEW CONTACT */}
+
+                                <button
+                                    type="button"
+                                    className="view-contact-button"
+                                    onClick={() =>
+                                        handleViewContact(donor)
+                                    }
+                                    disabled={contactLoading}
+                                >
+
+                                    {contactLoading
+                                        ? "Loading..."
+                                        : "View Contact"}
+
+                                </button>
+
+                            </div>
+
+                        ))
 
                     )}
 
@@ -566,7 +517,7 @@ function Requester() {
             )}
 
 
-            {/* ================= CONTACT ================= */}
+            {/* ================= CONTACT POPUP ================= */}
 
             {selectedDonor && (
 
@@ -582,62 +533,78 @@ function Requester() {
                         <p className="contact-donor-name">
 
                             {selectedDonor.name ||
-                                selectedDonor.user?.name ||
                                 "Donor"}
 
                         </p>
 
 
+                        {/* BLOOD GROUP */}
+
+                        <div className="donor-info">
+
+                            <Heart size={18} />
+
+                            <span>
+                                Blood Group:{" "}
+                                {selectedDonor.bloodGroup ||
+                                    "Not available"}
+                            </span>
+
+                        </div>
+
+
+                        {/* CITY */}
+
+                        <div className="donor-info">
+
+                            <MapPin size={18} />
+
+                            <span>
+                                {selectedDonor.city ||
+                                    "Not available"}
+                            </span>
+
+                        </div>
+
+
                         {/* PHONE */}
 
-                        {(selectedDonor.phone ||
-                            selectedDonor.user?.phone) && (
+                        <div className="donor-info">
 
-                            <div className="donor-info">
+                            <Phone size={18} />
 
-                                <Phone size={18} />
+                            <span>
+                                {selectedDonor.phone ||
+                                    "Phone not available"}
+                            </span>
 
-                                <span>
-
-                                    {selectedDonor.phone ||
-                                        selectedDonor.user?.phone}
-
-                                </span>
-
-                            </div>
-
-                        )}
+                        </div>
 
 
                         {/* EMAIL */}
 
-                        {(selectedDonor.email ||
-                            selectedDonor.user?.email) && (
+                        <div className="donor-info">
 
-                            <div className="donor-info">
+                            <Mail size={18} />
 
-                                <Mail size={18} />
+                            <span>
+                                {selectedDonor.email ||
+                                    "Email not available"}
+                            </span>
 
-                                <span>
+                        </div>
 
-                                    {selectedDonor.email ||
-                                        selectedDonor.user?.email}
 
-                                </span>
-
-                            </div>
-
-                        )}
-
+                        {/* CLOSE */}
 
                         <button
                             type="button"
                             className="close-contact-button"
-                            onClick={
-                                handleCloseContact
-                            }
+                            onClick={handleCloseContact}
                         >
+
                             Close
+
                         </button>
 
                     </div>

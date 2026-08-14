@@ -177,8 +177,7 @@
 
     border-radius: 10px;
 
-    background: #c7192e;
-
+background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: white;
 
     font-size: 15px;
@@ -217,7 +216,7 @@
 
     color: #777;
 
-    font-size: 13px;
+    font-size: 20px;
 
     cursor: pointer;
 }
