@@ -1,6 +1,3 @@
-/* =========================================
-   RESET
-========================================= */
 
 * {
     box-sizing: border-box;
@@ -35,9 +32,7 @@
 }
 
 
-/* =========================================
-   MAIN CARD
-========================================= */
+
 
 .auth-card {
     width: 100%;
@@ -136,8 +131,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    margin-bottom: 25px;
+margin: 0 auto 25px;
 
     border-radius: 18px;
 
@@ -181,6 +175,8 @@
     color: rgba(255, 255, 255, 0.88);
 
     font-size: 18px;
+    font-weight: 700;
+    font-family:'Times New Roman', Times, serif
 
     line-height: 1.5;
 }
@@ -225,7 +221,7 @@
 .benefit p {
     color: white;
 
-    font-size: 14px;
+    font-size: 19px;
     font-weight: 500;
 }
 
@@ -257,7 +253,7 @@
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 20px;
+  margin: 0 auto 25px;
 
     border-radius: 16px;
 
@@ -276,7 +272,7 @@
 .auth-right h1 {
     margin-bottom: 9px;
 
-    color: #202124;
+    color: #a91f32;
 
     font-size: 30px;
     font-weight: 750;
@@ -292,9 +288,10 @@
 
     margin-bottom: 30px;
 
-    color: #888;
+    color:#c7192e;
 
-    font-size: 14px;
+    font-size: 19px;
+    font-weight: 600;
 
     line-height: 1.6;
 }
@@ -318,9 +315,9 @@
 
     margin-bottom: 8px;
 
-    color: #333;
+    color: #a91f32;
 
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 650;
 }
 
@@ -338,7 +335,7 @@
 
     margin-bottom: 20px;
 
-    border: 1px solid #dedede;
+    border: 1px solid #c7192c;
 
     border-radius: 10px;
 
@@ -463,8 +460,7 @@
     border: none;
 
     border-radius: 10px;
-
-    background: #e53935;
+background: linear-gradient(135deg, #e96a79 0%, #d2818a 45%, #a9152a 100%);
 
     color: white;
 
@@ -552,9 +548,9 @@
 
     background: transparent;
 
-    color: #777;
+    color: #a91f32;
 
-    font-size: 13px;
+    font-size: 20px;
 
     cursor: pointer;
 
@@ -693,6 +689,7 @@
 
     .auth-right h1 {
         font-size: 26px;
+        color: #c62828;
     }
 
     .auth-description {
@@ -737,5 +734,6 @@
 
     .auth-right h1 {
         font-size: 23px;
+        color: #c62828;
     }
 }

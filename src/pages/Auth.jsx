@@ -11,14 +11,14 @@ function Auth() {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
+
     const [showPassword, setShowPassword] = useState(false);
+
+    const [step, setStep] = useState("login");
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-
-    // =====================================
-    // CURRENT LOGIN ROLE
-    // =====================================
 
     const currentRole = role?.toUpperCase();
 
@@ -55,10 +55,10 @@ function Auth() {
         ];
 
     // =====================================
-    // LOGIN
+    // CHECK PHONE / EMAIL
     // =====================================
 
-    const handleLogin = async (e) => {
+    const handleCheckUser = async (e) => {
 
         e.preventDefault();
 
@@ -70,8 +70,98 @@ function Auth() {
             return;
         }
 
+        try {
+
+            setLoading(true);
+
+            const response = await fetch(
+                "http://localhost:8081/api/auth/check",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+
+                    body: JSON.stringify({
+                        login: login.trim(),
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+
+                setError(
+                    data.error ||
+                    "Unable to check account."
+                );
+
+                return;
+            }
+
+            // =====================================
+            // EXISTING USER
+            // =====================================
+
+            if (data.exists) {
+
+                setStep("password");
+
+                setSuccess(
+                    "Account found. Please enter your password."
+                );
+
+            }
+
+            // =====================================
+            // NEW USER
+            // =====================================
+
+            else {
+
+                if (currentRole === "DONOR") {
+
+                    navigate("/donor-rules");
+
+                } else if (currentRole === "REQUESTER") {
+
+                    navigate("/requester-rules");
+
+                }
+            }
+
+        } catch (err) {
+
+            console.error(err);
+
+            setError(
+                "Cannot connect to backend. Make sure Spring Boot is running."
+            );
+
+        } finally {
+
+            setLoading(false);
+
+        }
+    };
+
+    // =====================================
+    // LOGIN
+    // =====================================
+
+    const handleLogin = async (e) => {
+
+        e.preventDefault();
+
+        setError("");
+        setSuccess("");
+
         if (!password.trim()) {
+
             setError("Please enter your password.");
+
             return;
         }
 
@@ -104,15 +194,11 @@ function Auth() {
                 setError(
                     data.error ||
                     data.message ||
-                    "Invalid email/phone or password."
+                    "Invalid password."
                 );
 
                 return;
             }
-
-            // =====================================
-            // USER FROM BACKEND
-            // =====================================
 
             const user = data.user;
 
@@ -121,12 +207,20 @@ function Auth() {
                 user?.role;
 
             if (!user) {
-                setError("User information not received from backend.");
+
+                setError(
+                    "User information not received from backend."
+                );
+
                 return;
             }
 
             if (!backendRole) {
-                setError("User role not received from backend.");
+
+                setError(
+                    "User role not received from backend."
+                );
+
                 return;
             }
 
@@ -134,11 +228,9 @@ function Auth() {
                 backendRole.toString().toUpperCase();
 
             // =====================================
-            // VERY IMPORTANT ROLE CHECK
+            // ROLE CHECK
             // =====================================
 
-            // User selected DONOR login
-            // But backend says REQUESTER
             if (currentRole !== loggedInRole) {
 
                 setError(
@@ -164,10 +256,6 @@ function Auth() {
 
             setSuccess("Login successful!");
 
-            // =====================================
-            // NAVIGATION BASED ON VERIFIED ROLE
-            // =====================================
-
             setTimeout(() => {
 
                 if (loggedInRole === "DONOR") {
@@ -178,48 +266,22 @@ function Auth() {
 
                     navigate("/requester-home");
 
-                } else {
-
-                    localStorage.removeItem("user");
-                    localStorage.removeItem("role");
-
-                    setError("Invalid user role.");
-
                 }
 
             }, 500);
 
         } catch (err) {
 
-            console.error("LOGIN ERROR:", err);
+            console.error(err);
 
             setError(
-                "Cannot connect to backend. Make sure Spring Boot is running on port 8081."
+                "Cannot connect to backend. Make sure Spring Boot is running."
             );
 
         } finally {
 
             setLoading(false);
-
         }
-    };
-
-    // =====================================
-    // REGISTER
-    // =====================================
-
-    const handleRegister = () => {
-
-        if (currentRole === "DONOR") {
-
-            navigate("/donor-rules");
-
-        } else if (currentRole === "REQUESTER") {
-
-            navigate("/requester-rules");
-
-        }
-
     };
 
     // =====================================
@@ -228,8 +290,17 @@ function Auth() {
 
     const handleBack = () => {
 
-        navigate("/");
+        if (step === "password") {
 
+            setStep("login");
+            setPassword("");
+            setError("");
+            setSuccess("");
+
+            return;
+        }
+
+        navigate("/");
     };
 
     return (
@@ -238,7 +309,7 @@ function Auth() {
 
             <div className="auth-card">
 
-                {/* ================= LEFT ================= */}
+                {/* LEFT */}
 
                 <div className="auth-left">
 
@@ -275,7 +346,7 @@ function Auth() {
 
                 </div>
 
-                {/* ================= RIGHT ================= */}
+                {/* RIGHT */}
 
                 <div className="auth-right">
 
@@ -291,115 +362,149 @@ function Auth() {
                         {pageDescription}
                     </p>
 
-                    {/* ================= FORM ================= */}
+                    {/* ================================= */}
+                    {/* STEP 1 - PHONE / EMAIL */}
+                    {/* ================================= */}
 
-                    <form onSubmit={handleLogin}>
+                    {step === "login" && (
 
-                        <label htmlFor="login">
-                            Phone Number / Email
-                        </label>
+                        <form onSubmit={handleCheckUser}>
 
-                        <input
-                            id="login"
-                            type="text"
-                            placeholder="Enter phone number or email"
-                            value={login}
-                            onChange={(e) =>
-                                setLogin(e.target.value)
-                            }
-                            autoComplete="username"
-                        />
-
-                        <label htmlFor="password">
-                            Password
-                        </label>
-
-                        <div className="password-box">
+                            <label htmlFor="login">
+                                Phone Number / Email
+                            </label>
 
                             <input
-                                id="password"
-                                type={
-                                    showPassword
-                                        ? "text"
-                                        : "password"
-                                }
-                                placeholder="Enter password"
-                                value={password}
+                                id="login"
+                                type="text"
+                                placeholder="Enter phone number or email"
+                                value={login}
                                 onChange={(e) =>
-                                    setPassword(e.target.value)
+                                    setLogin(e.target.value)
                                 }
-                                autoComplete="current-password"
+                                autoComplete="username"
                             />
 
+                            {error && (
+
+                                <p className="auth-error">
+                                    {error}
+                                </p>
+
+                            )}
+
+                            {success && (
+
+                                <p className="auth-success">
+                                    {success}
+                                </p>
+
+                            )}
+
                             <button
-                                type="button"
-                                className="show-password"
-                                onClick={() =>
-                                    setShowPassword(
-                                        !showPassword
-                                    )
-                                }
+                                type="submit"
+                                className="login-button"
+                                disabled={loading}
                             >
-                                {showPassword
-                                    ? "Hide"
-                                    : "Show"}
+
+                                {loading
+                                    ? "Checking..."
+                                    : "Continue"}
+
                             </button>
 
-                        </div>
+                        </form>
 
-                        {/* ERROR */}
+                    )}
 
-                        {error && (
+                    {/* ================================= */}
+                    {/* STEP 2 - PASSWORD */}
+                    {/* ================================= */}
 
-                            <p className="auth-error">
-                                {error}
-                            </p>
+                    {step === "password" && (
 
-                        )}
+                        <form onSubmit={handleLogin}>
 
-                        {/* SUCCESS */}
+                            <label>
+                                Phone Number / Email
+                            </label>
 
-                        {success && (
+                            <input
+                                type="text"
+                                value={login}
+                                disabled
+                            />
 
-                            <p className="auth-success">
-                                {success}
-                            </p>
+                            <label htmlFor="password">
+                                Password
+                            </label>
 
-                        )}
+                            <div className="password-box">
 
-                        <button
-                            type="submit"
-                            className="login-button"
-                            disabled={loading}
-                        >
+                                <input
+                                    id="password"
+                                    type={
+                                        showPassword
+                                            ? "text"
+                                            : "password"
+                                    }
+                                    placeholder="Enter password"
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
+                                    autoComplete="current-password"
+                                />
 
-                            {loading
-                                ? "Logging in..."
-                                : "Login"}
+                                <button
+                                    type="button"
+                                    className="show-password"
+                                    onClick={() =>
+                                        setShowPassword(
+                                            !showPassword
+                                        )
+                                    }
+                                >
+                                    {showPassword
+                                        ? "Hide"
+                                        : "Show"}
+                                </button>
 
-                        </button>
+                            </div>
 
-                    </form>
+                            {error && (
 
-                    {/* ================= REGISTER ================= */}
+                                <p className="auth-error">
+                                    {error}
+                                </p>
 
-                    <div className="register-section">
+                            )}
 
-                        <p>
-                            New user?
-                        </p>
+                            {success && (
 
-                        <button
-                            type="button"
-                            className="register-link"
-                            onClick={handleRegister}
-                        >
-                            Register
-                        </button>
+                                <p className="auth-success">
+                                    {success}
+                                </p>
 
-                    </div>
+                            )}
 
-                    {/* ================= BACK ================= */}
+                            <button
+                                type="submit"
+                                className="login-button"
+                                disabled={loading}
+                            >
+
+                                {loading
+                                    ? "Logging in..."
+                                    : "Login"}
+
+                            </button>
+
+                        </form>
+
+                    )}
+
+                    {/* BACK */}
 
                     <button
                         type="button"

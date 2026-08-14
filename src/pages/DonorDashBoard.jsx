@@ -12,6 +12,7 @@ import {
     LogOut,
     Power,
     Edit,
+    Hand,
     Scale
 } from "lucide-react";
 
@@ -298,18 +299,20 @@ function DonorDashboard() {
                         <p className="dashboard-label">
                             DONOR DASHBOARD
                         </p>
+<h1 className="welcome-title">
+    Welcome,
 
+    <span>
+        {" "}{user.name}
+    </span>
 
-                        <h1>
-
-                            Welcome,
-
-                            <span>
-                                {" "}{user.name}
-                            </span>
-
-                        </h1>
-
+    <span className="welcome-hand-box">
+        <Hand
+            size={24}
+            strokeWidth={2.5}
+        />
+    </span>
+</h1>
 
                         <p className="welcome-text">
 

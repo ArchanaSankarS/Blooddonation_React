@@ -18,7 +18,7 @@ body,
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #ffffff;
-    color: #333;
+    color: #7f1d2d;
 }
 
 .welcome-page {
@@ -55,7 +55,12 @@ body {
     position: absolute;
     inset: 0;
 
-    background: rgba(250, 225, 228, 0.88);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 226, 230, 0.95),
+            rgba(255, 244, 246, 0.93)
+        );
 
     z-index: 1;
 }
@@ -69,20 +74,27 @@ body {
     width: 1200px;
     max-width: 100%;
 
-    padding: 40px;
+    padding: 50px 40px;
 
     position: relative;
     z-index: 2;
 
     text-align: center;
 
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.98);
 
     border-radius: 30px;
 
+    border: 1px solid #ffe0e4;
+
     box-shadow:
-        0 15px 40px rgba(100, 20, 20, 0.12);
+        0 20px 60px rgba(150, 20, 35, 0.14);
 }
+
+
+/* =========================================================
+   SMALL TITLE
+========================================================= */
 
 .small-title {
     margin: 0 0 15px;
@@ -90,37 +102,47 @@ body {
     color: #c7192e;
 
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 800;
 
     letter-spacing: 3px;
 }
 
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
 .welcome-card h1 {
     margin: 0;
 
-    color: #333;
+    color: #7f1d2d;
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size: 56px;
-    font-weight: 600;
+    font-size: 60px;
+    font-weight: 700;
 
     line-height: 1.08;
+
+    letter-spacing: -1px;
 }
 
 .welcome-card h1 span {
     color: #c7192e;
 }
 
+
+/* =========================================================
+   WELCOME DESCRIPTION
+========================================================= */
 .welcome-text {
-    max-width: 620px;
-
-    margin: 20px auto 0;
-
-    color: #c7192e;
-
-    font-size: 17px;
-    line-height: 1.7;
+  
+    /* margin: 0px auto 0; */
+    color: #a91f32;
+    font-size: 20px;
+    font-weight: 450;
+    line-height: 1.9;
+    text-align: center;
 }
 
 
@@ -136,34 +158,31 @@ body {
 
     gap: 25px;
 
-    margin-top: 35px;
+    margin-top: 38px;
 }
 
 
 /* =========================================================
-   DONATE / NEED BLOOD BUTTON
+   ACTION BUTTON
 ========================================================= */
 
 .action-button {
-    width: 280px;
-    min-height: 78px;
+    width: 290px;
+    min-height: 82px;
 
-    padding: 16px 28px;
+    padding: 17px 28px;
 
     border: 2px solid #c7192e;
-    border-radius: 13px;
 
-    /*
-       RED + LIGHT RED + WHITE
-       DOUBLE SHADE GRADIENT
-    */
-    background: linear-gradient(
-        135deg,
-        #f297a3 0%,
-        #c7192e 35%,
-        #e85b6b 65%,
-        #f6f3f3 100%
-    );
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e96a79 0%,
+            #c7192e 45%,
+            #a9152a 100%
+        );
 
     color: #ffffff;
 
@@ -172,11 +191,13 @@ body {
     text-align: left;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 
     box-shadow:
-        0 8px 22px rgba(199, 25, 46, 0.22);
+        0 10px 25px rgba(199, 25, 46, 0.22);
 
     transition:
         transform 0.3s ease,
@@ -186,22 +207,21 @@ body {
 
 
 /* =========================================================
-   BUTTON HOVER
+   ACTION BUTTON HOVER
 ========================================================= */
 
 .action-button:hover {
     transform: translateY(-5px);
 
-    background: linear-gradient(
-        135deg,
-        #9f1025 0%,
-        #c7192e 35%,
-        #e94f61 65%,
-        #fff5f6 100%
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #c7192e,
+            #9f1025
+        );
 
     box-shadow:
-        0 14px 30px rgba(199, 25, 46, 0.30);
+        0 16px 35px rgba(199, 25, 46, 0.30);
 }
 
 
@@ -212,13 +232,13 @@ body {
 .action-button strong {
     display: block;
 
-    font-size: 20px;
-    font-weight: 700;
+    color: #ffffff;
+
+    font-size: 21px;
+
+    font-weight: 800;
 
     line-height: 1.2;
-
-    color: #ffffff;
-    
 }
 
 
@@ -229,16 +249,15 @@ body {
 .action-button small {
     display: block;
 
-    margin-top: 6px;
+    margin-top: 7px;
 
-    color: #ffffff;
+    color: #fff5f6;
 
-    font-size: 15px;
+    font-size: 14px;
+
     font-weight: 500;
 
     line-height: 1.3;
-
-    opacity: 0.95;
 }
 
 
@@ -253,32 +272,42 @@ body {
     margin-left: calc(50% - 50vw) !important;
     margin-right: calc(50% - 50vw) !important;
 
-    padding: 75px 5%;
+    padding: 80px 5%;
 
     position: relative;
 }
 
 
 /* =========================================================
-   FIRST SECTION BACKGROUND
+   FIRST SECTION
 ========================================================= */
 
 .donation-section {
-    background: #fff7f7 !important;
+    background:
+        linear-gradient(
+            135deg,
+            #fff5f6,
+            #fffafa
+        ) !important;
 }
 
 
 /* =========================================================
-   SECOND SECTION BACKGROUND
+   SECOND SECTION
 ========================================================= */
 
 .donor-section {
-    background: #fffaf5 !important;
+    background:
+        linear-gradient(
+            135deg,
+            #fff8f8,
+            #fff4f5
+        ) !important;
 }
 
 
 /* =========================================================
-   SAME IMAGE / CONTENT GAP
+   SECTION INNER
 ========================================================= */
 
 .section-inner {
@@ -302,13 +331,18 @@ body {
 
 
 /* =========================================================
-   CONTENT
+   FEATURE CONTENT
 ========================================================= */
 
 .feature-content {
     width: 100%;
     max-width: 600px;
 }
+
+
+/* =========================================================
+   FEATURE LABEL
+========================================================= */
 
 .feature-label {
     display: inline-block;
@@ -322,32 +356,46 @@ body {
     letter-spacing: 3px;
 }
 
+
+/* =========================================================
+   FEATURE HEADING
+========================================================= */
+
 .feature-content h2 {
     margin: 15px 0 22px;
 
-    color: #333;
+    color: #7f1d2d;
 
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 55px;
 
-    font-weight: 600;
+    font-weight: 700;
 
     line-height: 1.05;
+
+    letter-spacing: -1px;
 }
 
 .feature-content h2 span {
     color: #c7192e;
 }
 
+
+/* =========================================================
+   FEATURE DESCRIPTION
+========================================================= */
+
 .feature-content p {
     max-width: 570px;
 
     margin: 0;
 
-    color: #c7192e;
+    color: #a91f32;
 
     font-size: 18px;
+
+    font-weight: 500;
 
     line-height: 1.75;
 }
@@ -379,31 +427,41 @@ body {
 
 
 /* =========================================================
-   FIRST IMAGE CARD
+   IMAGE CARD ONE
 ========================================================= */
 
 .image-card-one {
-    background: #ffe9ec;
+    background:
+        linear-gradient(
+            135deg,
+            #ffe8ec,
+            #fff5f6
+        );
 
     box-shadow:
-        0 15px 35px rgba(199, 25, 46, 0.12);
+        0 20px 45px rgba(199, 25, 46, 0.14);
 }
 
 
 /* =========================================================
-   SECOND IMAGE CARD
+   IMAGE CARD TWO
 ========================================================= */
 
 .image-card-two {
-    background: #ffe9ec;
+    background:
+        linear-gradient(
+            135deg,
+            #ffe8ec,
+            #fff5f6
+        );
 
     box-shadow:
-        0 15px 35px rgba(199, 25, 46, 0.12);
+        0 20px 45px rgba(199, 25, 46, 0.14);
 }
 
 
 /* =========================================================
-   LARGE IMAGE CIRCLE
+   IMAGE CIRCLE
 ========================================================= */
 
 .image-circle {
@@ -431,7 +489,7 @@ body {
 
 
 /* =========================================================
-   IMAGE INSIDE CIRCLE
+   IMAGE
 ========================================================= */
 
 .image-circle img {
@@ -478,7 +536,7 @@ body {
 
 
 /* =========================================================
-   ORBIT DOT 1
+   ORBIT DOT ONE
 ========================================================= */
 
 .orbit-one::before {
@@ -501,7 +559,7 @@ body {
 
 
 /* =========================================================
-   ORBIT DOT 2
+   ORBIT DOT TWO
 ========================================================= */
 
 .orbit-one::after {
@@ -528,6 +586,7 @@ body {
 ========================================================= */
 
 @keyframes rotate {
+
     from {
         transform: rotate(0deg);
     }
@@ -538,6 +597,7 @@ body {
 }
 
 @keyframes rotateReverse {
+
     from {
         transform: rotate(360deg);
     }
@@ -564,7 +624,7 @@ body {
 }
 
 .wave-one {
-    background: #fffaf5;
+    background: #fff8f8;
 }
 
 .wave-one::before {
@@ -578,7 +638,7 @@ body {
     left: -5%;
     top: -30px;
 
-    background: #fff7f7;
+    background: #fff5f6;
 
     border-radius: 50%;
 }
@@ -598,7 +658,7 @@ body {
     left: -5%;
     top: -30px;
 
-    background: #fffaf5;
+    background: #fff8f8;
 
     border-radius: 50%;
 }
@@ -611,17 +671,22 @@ body {
 .how-section {
     width: 100%;
 
-    padding: 65px 4% 75px;
+    padding: 70px 4% 80px;
 
     background: #ffffff;
 
     text-align: center;
 }
 
-.how-header {
-    max-width: 650px;
 
-    margin: 0 auto 45px;
+/* =========================================================
+   HOW HEADER
+========================================================= */
+
+.how-header {
+    max-width: 700px;
+
+    margin: 0 auto 50px;
 }
 
 .how-header .feature-label {
@@ -634,16 +699,21 @@ body {
     letter-spacing: 3px;
 }
 
-.how-header h2 {
-    margin: 12px 0 15px;
 
-    color: #333;
+/* =========================================================
+   HOW HEADING
+========================================================= */
+
+.how-header h2 {
+    margin: 12px 0 18px;
+
+    color: #7f1d2d;
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size: 48px;
+    font-size: 50px;
 
-    font-weight: 600;
+    font-weight: 700;
 
     line-height: 1.1;
 }
@@ -652,12 +722,19 @@ body {
     color: #c7192e;
 }
 
+
+/* =========================================================
+   HOW DESCRIPTION
+========================================================= */
+
 .how-header p {
     margin: 0;
 
-    color: #777;
+    color: #a91f32;
 
     font-size: 16px;
+
+    font-weight: 500;
 
     line-height: 1.6;
 }
@@ -683,12 +760,17 @@ body {
     gap: 20px;
 }
 
+
+/* =========================================================
+   PROCESS CARD
+========================================================= */
+
 .process-card {
     width: 25%;
 
     min-height: 250px;
 
-    padding: 28px 20px;
+    padding: 30px 20px;
 
     display: flex;
 
@@ -700,21 +782,35 @@ body {
 
     position: relative;
 
-    background: #fff7f7;
+    background:
+        linear-gradient(
+            145deg,
+            #fff6f7,
+            #ffffff
+        );
 
-    border-radius: 18px;
+    border: 1px solid #ffe0e4;
+
+    border-radius: 20px;
 
     box-shadow:
-        0 8px 25px rgba(120, 20, 30, 0.08);
+        0 10px 30px rgba(120, 20, 30, 0.08);
 
     transition: all 0.3s ease;
 }
 
+
+/* =========================================================
+   PROCESS CARD HOVER
+========================================================= */
+
 .process-card:hover {
     transform: translateY(-8px);
 
+    border-color: #f3b4bc;
+
     box-shadow:
-        0 15px 35px rgba(120, 20, 30, 0.15);
+        0 18px 40px rgba(120, 20, 30, 0.15);
 }
 
 
@@ -723,8 +819,8 @@ body {
 ========================================================= */
 
 .process-icon {
-    width: 70px;
-    height: 70px;
+    width: 72px;
+    height: 72px;
 
     position: relative;
 
@@ -735,27 +831,27 @@ body {
 
     border-radius: 50%;
 
-    background: #ffffff;
+    background: #fff0f2;
 
-    color: #d62828;
+    color: #c7192e;
 
     font-size: 32px;
 
     box-shadow:
-        0 5px 18px rgba(120, 20, 30, 0.10);
+        0 6px 20px rgba(120, 20, 30, 0.10);
 }
 
 .process-icon::before {
     content: "";
 
-    width: 82px;
-    height: 82px;
+    width: 84px;
+    height: 84px;
 
     position: absolute;
 
     border-radius: 50%;
 
-    border: 2px dashed #d66b76;
+    border: 2px dashed #df7d88;
 
     animation: rotateIcon 7s linear infinite;
 }
@@ -769,7 +865,7 @@ body {
 
 
 /* =========================================================
-   PROCESS CONTENT
+   PROCESS NUMBER
 ========================================================= */
 
 .process-number {
@@ -784,26 +880,38 @@ body {
     letter-spacing: 2px;
 }
 
-.process-card h3 {
-    margin: 6px 0 7px;
 
-    color: #333;
+/* =========================================================
+   PROCESS TITLE
+========================================================= */
+
+.process-card h3 {
+    margin: 15px 0 8px;
+
+    color: #7f1d2d;
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size: 23px;
+    font-size: 25px;
 
-    font-weight: 600;
+    font-weight: 700;
 }
+
+
+/* =========================================================
+   PROCESS DESCRIPTION
+========================================================= */
 
 .process-card p {
     max-width: 190px;
 
     margin: 0;
 
-    color: #777;
+    color: #a91f32;
 
-    font-size: 13px;
+    font-size: 14px;
+
+    font-weight: 500;
 
     line-height: 1.5;
 }
@@ -814,6 +922,7 @@ body {
 ========================================================= */
 
 @keyframes rotateIcon {
+
     from {
         transform: rotate(0deg);
     }
@@ -842,8 +951,6 @@ body {
     .image-circle {
         width: 285px;
         height: 285px;
-
-        padding: 0;
     }
 
     .orbit-one {
@@ -871,7 +978,7 @@ body {
     }
 
     .process-card h3 {
-        font-size: 20px;
+        font-size: 21px;
     }
 }
 
@@ -941,10 +1048,14 @@ body {
 
     .welcome-card {
         padding: 40px 20px;
+
+        border-radius: 22px;
     }
 
     .welcome-card h1 {
-        font-size: 40px;
+        font-size: 42px;
+
+        letter-spacing: -0.5px;
     }
 
     .welcome-text {
@@ -964,9 +1075,10 @@ body {
 
     .action-button {
         width: 100%;
-        max-width: 320px;
 
-        min-height: 75px;
+        max-width: 330px;
+
+        min-height: 78px;
 
         padding: 15px 24px;
     }
@@ -980,7 +1092,7 @@ body {
     }
 
 
-    /* FULL WIDTH BACKGROUND */
+    /* FULL WIDTH */
 
     .image-content-section {
         width: 100vw !important;
@@ -993,6 +1105,9 @@ body {
         gap: 45px;
     }
 
+
+    /* FEATURE */
+
     .feature-content h2 {
         font-size: 40px;
     }
@@ -1002,7 +1117,7 @@ body {
     }
 
 
-    /* IMAGE CARD */
+    /* IMAGE */
 
     .image-card {
         width: 340px;
@@ -1011,14 +1126,9 @@ body {
         max-width: 100%;
     }
 
-
-    /* BIG CIRCLE */
-
     .image-circle {
         width: 280px;
         height: 280px;
-
-        padding: 0;
     }
 
     .orbit-one {
@@ -1032,7 +1142,7 @@ body {
     }
 
 
-    /* HOW IT WORKS */
+    /* HOW */
 
     .how-section {
         padding: 50px 20px 60px;
@@ -1062,14 +1172,22 @@ body {
 
 @media (max-width: 450px) {
 
+    .welcome-card {
+        padding: 35px 18px;
+    }
+
     .welcome-card h1 {
-        font-size: 34px;
+        font-size: 35px;
     }
 
     .small-title {
-        font-size: 11px;
+        font-size: 15px;
 
         letter-spacing: 2px;
+    }
+
+    .welcome-text {
+        font-size: 14px;
     }
 
     .feature-content h2 {
@@ -1085,6 +1203,7 @@ body {
 
     .action-button {
         width: 100%;
+
         max-width: 290px;
 
         min-height: 72px;
@@ -1099,21 +1218,16 @@ body {
     }
 
 
-    /* IMAGE CARD */
+    /* IMAGE */
 
     .image-card {
         width: 290px;
         height: 290px;
     }
 
-
-    /* LARGE CIRCLE */
-
     .image-circle {
         width: 230px;
         height: 230px;
-
-        padding: 0;
     }
 
     .orbit-one {
