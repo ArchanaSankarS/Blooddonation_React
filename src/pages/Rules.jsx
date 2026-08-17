@@ -1,22 +1,23 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Heart, ArrowLeft, CheckCircle } from "lucide-react";
 
 import "./Rules.css";
 
 function Rules() {
+
     const navigate = useNavigate();
+    const location = useLocation();
 
     return (
         <div className="rules-page">
+
             <div className="rules-card">
 
-                {/* Icon */}
                 <div className="rules-icon">
                     <Heart size={60} fill="currentColor" />
                 </div>
 
-                {/* Heading */}
                 <p className="rules-label">
                     BEFORE YOU REGISTER
                 </p>
@@ -29,7 +30,6 @@ function Rules() {
                     Please read these simple guidelines before registering as a blood donor.
                 </p>
 
-                {/* Rules */}
                 <div className="rules-list">
 
                     <div className="rule-item">
@@ -90,15 +90,19 @@ function Rules() {
 
                 </div>
 
-                {/* Continue */}
                 <button
                     className="agree-button"
-                    onClick={() => navigate("/donor-register")}
+                    onClick={() =>
+                        navigate("/donor-register", {
+                            state: {
+                                login: location.state?.login
+                            }
+                        })
+                    }
                 >
                     I Agree, Continue
                 </button>
 
-                {/* Back */}
                 <button
                     className="rules-back"
                     onClick={() => navigate("/auth/DONOR")}
@@ -108,6 +112,7 @@ function Rules() {
                 </button>
 
             </div>
+
         </div>
     );
 }

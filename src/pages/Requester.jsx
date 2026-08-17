@@ -325,7 +325,7 @@ function Requester() {
             <section className="search-card">
 
                 <h2>
-                    Search Available Donors
+                   SEARCH AVAILABLE DONORS
                 </h2>
 
                 <form

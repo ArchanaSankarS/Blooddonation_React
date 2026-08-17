@@ -46,7 +46,7 @@ body {
     justify-content: space-between;
 
     gap: 25px;
-
+height: 150px;
     background: #fff0f2;
 
     border-bottom: 1px solid #f5dfe2;
@@ -96,7 +96,7 @@ body {
 
     color: #a91527;
 
-    font-size: 20px;
+    font-size: 23px;
 }
 
 
@@ -121,17 +121,17 @@ body {
     background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: white;
 
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
 
     cursor: pointer;
 
     transition: 0.2s ease;
 }
-
+/* 
 .logout-button:hover {
     background: #a91527;
-}
+} */
 
 
 /* =========================================================
@@ -139,13 +139,13 @@ body {
 ========================================================= */
 
 .search-card {
-    max-width: 1250px;
+    max-width: 3500px;
 
     margin: 0 auto 30px;
 
     padding: 28px 30px;
 
-    background: white;
+    background:#fff0f0;
 
     border-radius: 12px;
 
@@ -163,7 +163,7 @@ body {
 
     color: #a91527;
 
-    font-size: 21px;
+    font-size: 30px;
     font-weight: 600;
 
     text-align: center;
@@ -230,7 +230,7 @@ border: 1px solid #c7192e;
     color: #333;
 
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 18px;
 
     transition: 0.2s ease;
 }
@@ -270,7 +270,7 @@ border: 1px solid #c7192e;
 background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: white;
 
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
 
     cursor: pointer;
@@ -300,7 +300,7 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
   background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: white;
 
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
 
     cursor: pointer;
@@ -385,7 +385,7 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
 ========================================================= */
 
 .donor-section {
-    max-width: 1250px;
+    max-width: 1800px;
 
     margin: 0 auto;
 
@@ -458,10 +458,10 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
 .donor-card h2 {
     margin: 0 0 17px;
 
-    color: #333;
+    color: #a9152a;
 
-    font-size: 21px;
-    font-weight: 500;
+    font-size: 25px;
+    font-weight: 700;
 }
 
 
@@ -476,10 +476,10 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     gap: 9px;
 
     margin-bottom: 12px;
+  font-weight: 700;
+    color: #c7192e;
 
-    color: #555;
-
-    font-size: 14px;
+    font-size: 20px;
 
     line-height: 1.5;
 
@@ -514,10 +514,10 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
 
     border-radius: 7px;
 
-    background: #eaf8ee;
+    background: #d3ebda;
     color: #238443;
 
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 700;
 
     text-align: center;
@@ -557,7 +557,7 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
    background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: white;
 
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
 
     cursor: pointer;
@@ -731,7 +731,7 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
 .contact-card h2 {
     margin: 0;
 
-    color: #333;
+    color: #a91527;
 
     font-size: 21px;
 }
@@ -816,8 +816,7 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     border: none;
     border-radius: 8px;
 
-    background: #c7192e;
-    color: white;
+    background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);    color: white;
 
     font-size: 14px;
     font-weight: 600;

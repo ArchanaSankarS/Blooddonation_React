@@ -112,18 +112,17 @@ function Auth() {
 
      //new user
 
-            else {
-
-                if (currentRole === "DONOR") {
-
-                    navigate("/donor-rules");
-
-                } else if (currentRole === "REQUESTER") {
-
-                    navigate("/requester-rules");
-
-                }
-            }
+      else {
+    if (currentRole === "DONOR") {
+        navigate("/donor-rules", {
+            state: { login: login.trim() }
+        });
+    } else if (currentRole === "REQUESTER") {
+        navigate("/requester-rules", {
+            state: { login: login.trim() }
+        });
+    }
+}
 
         } catch (err) {
 

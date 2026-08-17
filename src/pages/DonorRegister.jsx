@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Heart, ArrowLeft } from "lucide-react";
 
 import "./DonorRegister.css";
@@ -7,20 +7,39 @@ import "./DonorRegister.css";
 function DonorRegister() {
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Rules page -> Auth page login value
+    const previousLogin = location.state?.login || "";
 
     const [formData, setFormData] = useState({
+
         name: "",
-        phone: "",
-        email: "",
+
+        phone: /^\d{10}$/.test(previousLogin)
+            ? previousLogin
+            : "",
+
+        email: previousLogin.includes("@")
+            ? previousLogin
+            : "",
+
         password: "",
+
         city: "",
+
         bloodGroup: "",
+
         gender: "",
+
         age: "",
+
         lastDonationDate: ""
+
     });
 
     const [error, setError] = useState("");
+
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
@@ -28,11 +47,15 @@ function DonorRegister() {
         const { name, value } = e.target;
 
         setFormData((prev) => ({
+
             ...prev,
+
             [name]: value
+
         }));
 
         setError("");
+
     };
 
     const handleSubmit = async (e) => {
@@ -41,75 +64,117 @@ function DonorRegister() {
 
         setError("");
 
-   //validation
+        // =========================
+        // VALIDATION
+        // =========================
 
         if (!formData.name.trim()) {
+
             setError("Full Name is required.");
+
             return;
+
         }
 
         if (!formData.phone.trim()) {
+
             setError("Phone Number is required.");
+
             return;
+
         }
 
         if (!/^[0-9]{10}$/.test(formData.phone.trim())) {
-            setError("Enter a valid 10-digit phone number.");
+
+            setError(
+                "Enter a valid 10-digit phone number."
+            );
+
             return;
+
         }
 
         if (!formData.email.trim()) {
+
             setError("Email is required.");
+
             return;
+
         }
 
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-            formData.email.trim()
-        )) {
+        if (
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                formData.email.trim()
+            )
+        ) {
+
             setError("Enter a valid email.");
+
             return;
+
         }
 
         if (!formData.password.trim()) {
+
             setError("Password is required.");
+
             return;
+
         }
 
         if (formData.password.length < 6) {
+
             setError(
                 "Password must contain at least 6 characters."
             );
+
             return;
+
         }
 
         if (!formData.city.trim()) {
+
             setError("City is required.");
+
             return;
+
         }
 
         if (!formData.bloodGroup) {
+
             setError("Blood Group is required.");
+
             return;
+
         }
 
         if (!formData.age) {
+
             setError("Age is required.");
+
             return;
+
         }
 
         const age = Number(formData.age);
 
         if (age < 18 || age > 60) {
+
             setError(
                 "Donor age must be between 18 and 60."
             );
+
             return;
+
         }
 
         try {
 
             setLoading(true);
-//user creation
+
+            // =========================
+            // 1. CREATE USER
+            // =========================
 
             const userResponse = await fetch(
                 "http://localhost:8081/api/auth/register",
@@ -155,7 +220,12 @@ function DonorRegister() {
                 );
 
                 return;
+
             }
+
+            // =========================
+            // GET CREATED USER
+            // =========================
 
             const createdUser =
                 userData.user || userData;
@@ -167,9 +237,12 @@ function DonorRegister() {
                 );
 
                 return;
+
             }
 
-   //create donor details
+            // =========================
+            // 2. CREATE DONOR
+            // =========================
 
             const donorResponse = await fetch(
                 "http://localhost:8081/api/donor/save",
@@ -177,8 +250,7 @@ function DonorRegister() {
                     method: "POST",
 
                     headers: {
-                        "Content-Type":
-                            "application/json"
+                        "Content-Type": "application/json"
                     },
 
                     body: JSON.stringify({
@@ -199,8 +271,9 @@ function DonorRegister() {
                             formData.city.trim(),
 
                         lastDonationDate:
-                            formData.lastDonationDate ||
-                            null,
+                            formData.lastDonationDate
+                                ? formData.lastDonationDate
+                                : null,
 
                         available: true
 
@@ -225,8 +298,12 @@ function DonorRegister() {
                 );
 
                 return;
+
             }
-//auto login
+
+            // =========================
+            // 3. SAVE LOGIN SESSION
+            // =========================
 
             localStorage.setItem(
                 "user",
@@ -237,15 +314,18 @@ function DonorRegister() {
                 "role",
                 "DONOR"
             );
-//donor dashbaord
+
+            // =========================
+            // 4. GO DONOR DASHBOARD
+            // =========================
 
             navigate("/donor-dashboard");
 
-        } catch (error) {
+        } catch (err) {
 
             console.error(
                 "DONOR REGISTRATION ERROR:",
-                error
+                err
             );
 
             setError(
@@ -257,11 +337,14 @@ function DonorRegister() {
             setLoading(false);
 
         }
+
     };
 
     return (
 
         <div className="donor-register-page">
+
+            {/* BACK BUTTON */}
 
             <button
                 className="register-back"
@@ -269,11 +352,17 @@ function DonorRegister() {
                     navigate("/donor-rules")
                 }
             >
+
                 <ArrowLeft size={18} />
+
                 Back
+
             </button>
 
+
             <div className="donor-register-card">
+
+                {/* HEADER */}
 
                 <div className="register-header">
 
@@ -291,25 +380,38 @@ function DonorRegister() {
                     </p>
 
                     <h1>
+
                         Become a
                         <br />
-                        <span>blood donor.</span>
+
+                        <span>
+                            blood donor.
+                        </span>
+
                     </h1>
 
                     <p>
-                        Enter your details to
-                        create your donor account.
+                        Enter your details to create
+                        your donor account.
                     </p>
 
                 </div>
 
+
                 <form onSubmit={handleSubmit}>
+
+                    {/* =========================
+                        PERSONAL DETAILS
+                    ========================= */}
 
                     <h3 className="form-section-title">
                         Personal Details
                     </h3>
 
+
                     <div className="form-grid">
+
+                        {/* NAME */}
 
                         <div className="form-group">
 
@@ -327,6 +429,9 @@ function DonorRegister() {
 
                         </div>
 
+
+                        {/* PHONE */}
+
                         <div className="form-group">
 
                             <label>
@@ -339,10 +444,13 @@ function DonorRegister() {
                                 placeholder="Enter 10-digit phone number"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                maxLength="10"
+                                maxLength={10}
                             />
 
                         </div>
+
+
+                        {/* EMAIL */}
 
                         <div className="form-group">
 
@@ -360,6 +468,9 @@ function DonorRegister() {
 
                         </div>
 
+
+                        {/* PASSWORD */}
+
                         <div className="form-group">
 
                             <label>
@@ -376,6 +487,9 @@ function DonorRegister() {
 
                         </div>
 
+
+                        {/* CITY */}
+
                         <div className="form-group">
 
                             <label>
@@ -391,6 +505,9 @@ function DonorRegister() {
                             />
 
                         </div>
+
+
+                        {/* GENDER */}
 
                         <div className="form-group">
 
@@ -426,11 +543,19 @@ function DonorRegister() {
 
                     </div>
 
+
+                    {/* =========================
+                        DONOR DETAILS
+                    ========================= */}
+
                     <h3 className="form-section-title donor-details-title">
                         Donor Details
                     </h3>
 
+
                     <div className="form-grid">
+
+                        {/* BLOOD GROUP */}
 
                         <div className="form-group">
 
@@ -448,18 +573,44 @@ function DonorRegister() {
                                     Select blood group
                                 </option>
 
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
+                                <option value="A+">
+                                    A+
+                                </option>
+
+                                <option value="A-">
+                                    A-
+                                </option>
+
+                                <option value="B+">
+                                    B+
+                                </option>
+
+                                <option value="B-">
+                                    B-
+                                </option>
+
+                                <option value="AB+">
+                                    AB+
+                                </option>
+
+                                <option value="AB-">
+                                    AB-
+                                </option>
+
+                                <option value="O+">
+                                    O+
+                                </option>
+
+                                <option value="O-">
+                                    O-
+                                </option>
 
                             </select>
 
                         </div>
+
+
+                        {/* AGE */}
 
                         <div className="form-group">
 
@@ -478,6 +629,9 @@ function DonorRegister() {
                             />
 
                         </div>
+
+
+                        {/* LAST DONATION */}
 
                         <div className="form-group">
 
@@ -498,13 +652,21 @@ function DonorRegister() {
 
                     </div>
 
+
+                    {/* ERROR */}
+
                     {error && (
 
                         <p className="register-error">
+
                             {error}
+
                         </p>
 
                     )}
+
+
+                    {/* SUBMIT */}
 
                     <button
                         type="submit"
@@ -517,6 +679,9 @@ function DonorRegister() {
                             : "Create Donor Account"}
 
                     </button>
+
+
+                    {/* NOTE */}
 
                     <p className="register-note">
 
@@ -531,7 +696,9 @@ function DonorRegister() {
             </div>
 
         </div>
+
     );
+
 }
 
 export default DonorRegister;

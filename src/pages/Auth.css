@@ -166,9 +166,9 @@ margin: 0 auto 25px;
 
     color: rgba(255, 255, 255, 0.88);
 
-    font-size: 18px;
+    font-size: 21px;
     font-weight: 700;
-    font-family:'Times New Roman', Times, serif
+    font-family:'Times New Roman', Times, serif;
 
     line-height: 1.5;
 }
@@ -309,7 +309,7 @@ margin: 0 auto 25px;
 
     color: #a91f32;
 
-    font-size: 15px;
+    font-size: 21px;
     font-weight: 650;
 }
 
@@ -337,7 +337,7 @@ margin: 0 auto 25px;
 
     color: #222;
 
-    font-size: 14px;
+    font-size: 18px;
 
     transition: 0.2s ease;
 }
@@ -434,7 +434,7 @@ margin: 0 auto 25px;
 
     color: #2e8b46;
 
-    font-size: 13px;
+    font-size: 18px;
 
     line-height: 1.4;
 }
@@ -456,7 +456,7 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
 
     color: white;
 
-    font-size: 15px;
+    font-size: 21px;
     font-weight: 700;
 
     cursor: pointer;
@@ -542,7 +542,7 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
 
     color: #a91f32;
 
-    font-size: 20px;
+    font-size: 25px;
 
     cursor: pointer;
 

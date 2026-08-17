@@ -159,15 +159,14 @@ function Welcome() {
 
                         <h2>
                             Find the right
-                            <br />
+                      <br></br>
                             <span>blood donor.</span>
                         </h2>
 
                         <p>
-                            Search for available donors based on 
-                            
-                            with someone who can help when it
-                            matters most.
+                             Search for available donors based on blood group  and location, then connect with someone who can help when it matters most.
+  
+    
                         </p>
 
                     </div>
