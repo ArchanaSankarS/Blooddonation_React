@@ -18,9 +18,6 @@ body {
 }
 
 
-/* =========================================================
-   MAIN
-========================================================= */
 
 .donor-dashboard {
     min-height: 100vh;
@@ -30,9 +27,7 @@ body {
 }
 
 
-/* =========================================================
-   HEADER
-========================================================= */
+
 
 .dashboard-header {
     height: 90px;
@@ -96,7 +91,7 @@ body {
 
     color: #c7192c;
 
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 900;
 
     letter-spacing: 1.5px;
@@ -143,9 +138,7 @@ body {
 }
 
 
-/* =========================================================
-   MAIN CONTENT
-========================================================= */
+
 
 .dashboard-main {
     width: 100%;
@@ -157,9 +150,7 @@ body {
 }
 
 
-/* =========================================================
-   SUCCESS / ERROR
-========================================================= */
+
 
 .dashboard-success,
 .dashboard-error {
@@ -195,9 +186,7 @@ body {
 }
 
 
-/* =========================================================
-   WELCOME
-========================================================= */
+
 
 .welcome-section {
     position: relative;
@@ -216,7 +205,7 @@ body {
 
     color: #ed3b43;
 
-    font-size: 15px;
+    font-size: 21px;
     font-weight: 800;
 
     letter-spacing: 2px;
@@ -251,9 +240,10 @@ body {
 .welcome-text {
     margin: 12px auto 0;
 
-    color: #ed3b43;
+    color: #a91f32;
 
-    font-size: 21px;
+    font-size: 25px;
+    font-weight: 700;
 
     line-height: 1.6;
 }
@@ -299,9 +289,7 @@ body {
 }
 
 
-/* =========================================================
-   AVAILABILITY
-========================================================= */
+
 
 .availability-card {
     width: 100%;
@@ -357,8 +345,8 @@ body {
 }
 
 .status-icon.active {
-    background: #e1f7e9;
-    color: #04853c;
+    background: #64d38c;
+    color: white;
 }
 
 .availability-content {
@@ -432,6 +420,8 @@ body {
 
 .availability-toggle.active {
     background: #64d38c;
+    font-size: 20px;
+    font-weight: 700;
 
     color: white;
 }
@@ -441,9 +431,6 @@ body {
 }
 
 
-/* =========================================================
-   DETAILS
-========================================================= */
 
 .details-section {
     width: 100%;
@@ -474,7 +461,7 @@ body {
 
     color: #ed3b43;
 
-    font-size: 14px;
+    font-size: 18px;
 
     font-weight: 800;
 
@@ -499,12 +486,12 @@ body {
     color: #ed3b43;
 
     font-size: 22px;
+    font-weight: 600;
+
 }
 
 
-/* =========================================================
-   UPDATE BUTTON
-========================================================= */
+
 
 .edit-btn {
     position: absolute;
@@ -550,9 +537,7 @@ body {
 }
 
 
-/* =========================================================
-   DETAILS GRID
-========================================================= */
+
 
 .details-grid {
     display: grid;
@@ -622,9 +607,9 @@ body {
 }
 
 .detail-content span {
-    color: #746e6e;
+    color: #a9152a;
 
-    font-size: 13px;
+    font-size: 16px;
 
     font-weight: 700;
 
@@ -634,7 +619,7 @@ body {
 .detail-content strong {
     color: #222222;
 
-    font-size: 14px;
+    font-size: 16px;
 
     font-weight: 600;
 
@@ -644,7 +629,7 @@ body {
 }
 
 .highlight-card .detail-content span {
-    color: #ed3b43;
+    color: #a9152a;
 }
 
 .highlight-card .detail-content strong {
@@ -653,10 +638,6 @@ body {
     font-size: 16px;
 }
 
-
-/* =========================================================
-   LAST DONATION
-========================================================= */
 
 .last-donation-card {
     min-height: 100px;
@@ -721,9 +702,7 @@ body {
 }
 
 
-/* =========================================================
-   FOOTER MESSAGE
-========================================================= */
+
 
 .dashboard-message {
     display: flex;
@@ -736,7 +715,8 @@ body {
 
     margin-top: 25px;
 
-    color: #4b4141;
+    color: #a9152a;
+    font-weight: 800;
 
     font-size: 25px;
 }
@@ -754,9 +734,6 @@ body {
 }
 
 
-/* =========================================================
-   LOADING
-========================================================= */
 
 .dashboard-loading {
     min-height: 100vh;
@@ -784,11 +761,7 @@ body {
 }
 
 
-/* =========================================================
-   =========================================================
-   UPDATE MODAL
-   =========================================================
-   ========================================================= */
+
 
 .edit-modal-overlay {
     position: fixed;
@@ -951,9 +924,6 @@ body {
 }
 
 
-/* =========================================================
-   EDIT FORM
-========================================================= */
 
 .edit-form {
     padding: 25px 28px 28px;
@@ -1023,9 +993,7 @@ body {
 }
 
 
-/* =========================================================
-   FORM BUTTONS
-========================================================= */
+
 
 .edit-form-actions {
     grid-column: 1 / -1;
@@ -1071,9 +1039,7 @@ body {
     color: white;
 }
 
-/* .cancel-btn:hover {
-    background: #f3f4f6;
-} */
+
 
 .save-btn {
     border: none;
@@ -1087,11 +1053,7 @@ body {
         rgba(220, 38, 38, 0.20);
 }
 
-/* .save-btn:hover {
-    background: #b91c1c;
 
-    transform: translateY(-1px);
-} */
 
 .save-btn:disabled,
 .cancel-btn:disabled,
@@ -1104,9 +1066,7 @@ body {
 }
 
 
-/* =========================================================
-   ANIMATIONS
-========================================================= */
+
 
 @keyframes editOverlayIn {
 
@@ -1267,7 +1227,11 @@ body {
         width: 24px;
         height: 24px;
     }
-
+.welcome-text {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+}
 
     /* SECTION */
 

@@ -1,92 +1,64 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .rules-page {
-    min-height: 100vh;
-
+    height: 100vh;
     width: 100%;
-
-    padding: 50px 20px;
-
+    padding: 20px 40px;  
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     background: #fff6f7;
-
     font-family: Arial, Helvetica, sans-serif;
-}
+    overflow: hidden;  }
 
-
-/* Card */
-
+/* Card - WIDER & LOWER HEIGHT */
 .rules-card {
     width: 100%;
-
-    max-width: 650px;
-
-    padding: 45px;
-
+    height: 100%;
+    max-width: 1100px;  
+    padding: 30px 45px;  
     background: #ffffff;
-
     border-radius: 25px;
-
     text-align: center;
-
-    box-shadow:
-        0 15px 45px rgba(120, 20, 30, 0.12);
+    box-shadow: 0 15px 45px rgba(120, 20, 30, 0.12);
+    max-height: 85vh;  
+    overflow: hidden;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-
-/* Icon */
 
 .rules-icon {
-    width: 70px;
-
-    height: 70px;
-
-    margin: 0 auto 20px;
-
+    width: 60px; 
+    height: 60px;  
+    margin: 0 auto 12px;  
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     border-radius: 50%;
-
     background: #fff0f2;
-
     color: #c7192e;
+    font-size: 28px;  
 }
 
-
-/* Heading */
-
 .rules-label {
-    margin: 0 0 10px;
-
+    margin: 0 0 6px; 
     color: #c7192e;
-
-    font-size: 20px;
-
+    font-size: 25px; 
     font-weight: 800;
-
     letter-spacing: 3px;
 }
 
 .rules-card h1 {
     margin: 0;
-
-    color: #333;
-
+    color: #a9152a;
     font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 46px;
-
+    font-size: 38px;  
     line-height: 1.1;
 }
 
@@ -95,129 +67,80 @@
 }
 
 .rules-intro {
-    max-width: 500px;
-
-    margin: 15px auto 30px;
-
-    color: #c7192e;
-
-    font-size: 19px;
-
-    line-height: 1.6;
+    max-width: 600px;
+    margin: 8px auto 18px;  
+    color: #a9152a;
+    font-size: 23px;  
+    line-height: 1.5;
 }
 
-
-/* Rules */
-
 .rules-list {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 15px;
-
+    display: grid;
+    
+    gap: 10px 20px;  
     text-align: left;
 }
 
 .rule-item {
     display: flex;
-
     align-items: flex-start;
-
-    gap: 14px;
-
-    padding: 16px;
-
+    gap: 12px;  
+    padding: 10px 16px;  
     background: #fff8f8;
-
-    border-radius: 12px;
+    border-radius: 10px; 
 }
 
 .rule-item svg {
     flex-shrink: 0;
-
-    width: 22px;
-
-    height: 22px;
-
+    width: 20px;  
+    height: 20px;  
     margin-top: 2px;
-
     color: #c7192e;
 }
 
 .rule-item h3 {
-    margin: 0 0 5px;
-
-    color: #333;
-
-    font-size: 16px;
+    margin: 0 0 2px;  
+    color: #a9152a;
+    font-size: 21px;  
 }
 
 .rule-item p {
     margin: 0;
-
     color: #cd2222;
-
-    font-size: 15px;
-
-    line-height: 1.5;
+    font-size: 19px;  
+    line-height: 1.4;
 }
-
-
-/* Agree */
 
 .agree-button {
     width: 100%;
-
-    height: 52px;
-
-    margin-top: 30px;
-
+    height: 48px;  
+    margin-top: 18px;  
     border: none;
-
-    border-radius: 10px;
-
-background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: white;
-
-    font-size: 15px;
-
+    font-size: 17px;  
     font-weight: 700;
-
     cursor: pointer;
-
     transition: 0.3s;
+    letter-spacing: 1px;
 }
 
 .agree-button:hover {
     background: #a91527;
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 20px rgba(199, 25, 46, 0.2);
+    box-shadow: 0 8px 20px rgba(199, 25, 46, 0.2);
 }
 
-
-/* Back */
-
 .rules-back {
-    margin-top: 18px;
-
-    display: inline-flex;
-
+    margin-top: 12px;  
+   
     align-items: center;
-
     gap: 6px;
-
     border: none;
-
     background: transparent;
-
-    color: #777;
-
-    font-size: 20px;
-
+    color: #cd2222;
+    font-size: 22px;  
     cursor: pointer;
 }
 
@@ -225,30 +148,148 @@ background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: #c7192e;
 }
 
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
+@media (max-width: 850px) {
     .rules-page {
-        padding: 30px 15px;
+        padding: 15px 25px;
     }
 
     .rules-card {
-        padding: 30px 20px;
-
-        border-radius: 20px;
+        max-width: 100%;
+        padding: 25px 30px;
+        max-height: 88vh;
     }
 
     .rules-card h1 {
-        font-size: 38px;
+        font-size: 32px;
+    }
+
+    .rules-intro {
+        font-size: 15px;
+    }
+
+    .rules-list {
+        grid-template-columns: 1fr;  /* ← SINGLE COLUMN */
+        gap: 8px;
+    }
+
+    .rule-item h3 {
+        font-size: 14px;
+    }
+
+    .rule-item p {
+        font-size: 13px;
+    }
+
+    .agree-button {
+        height: 44px;
+        font-size: 15px;
+    }
+
+    .rules-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+@media (max-width: 600px) {
+    .rules-page {
+        padding: 12px 12px;
+    }
+
+    .rules-card {
+        padding: 20px 16px;
+        max-width: 100%;
+        max-height: 95vh;
+        border-radius: 18px;
+    }
+
+    .rules-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .rules-label {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .rules-card h1 {
+        font-size: 26px;
     }
 
     .rules-intro {
         font-size: 14px;
+        margin: 6px auto 14px;
+    }
+
+    .rules-list {
+        grid-template-columns: 1fr;
+        gap: 6px;
     }
 
     .rule-item {
-        padding: 14px;
+        padding: 8px 12px;
+        gap: 10px;
+    }
+
+    .rule-item svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .rule-item h3 {
+        font-size: 13px;
+    }
+
+    .rule-item p {
+        font-size: 12px;
+    }
+
+    .agree-button {
+        height: 42px;
+        font-size: 14px;
+        margin-top: 14px;
+        border-radius: 10px;
+    }
+
+    .rules-back {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+}
+
+/* =========================================
+   VERY SMALL DEVICES
+========================================= */
+@media (max-width: 360px) {
+    .rules-card {
+        padding: 15px 12px;
+    }
+
+    .rules-card h1 {
+        font-size: 22px;
+    }
+
+    .rules-intro {
+        font-size: 12px;
+    }
+
+    .rule-item h3 {
+        font-size: 12px;
+    }
+
+    .rule-item p {
+        font-size: 11px;
+    }
+
+    .agree-button {
+        height: 38px;
+        font-size: 13px;
     }
 }

@@ -37,21 +37,22 @@ function Auth() {
         : "Find the Blood You Need";
 
     const leftDescription = isDonor
-        ? "Your one blood donation can make a difference in someone's life."
-        : "Get connected with blood donors and find the right blood group when you need it.";
+        ? "Your blood can give someone a second chance."
+        : "Find the helping hand you’re waiting for..";
 
     const benefits = isDonor
         ? [
             "Help patients in need",
-            "Be a life-saving donor",
-            "Make a difference",
-            "Support your community",
+            " Be a Hero, Save a Life",
+
+            " Give hope, give life",
+            "One Drop, One Life ",
         ]
         : [
             "Find blood donors easily",
-            "Send blood requests quickly",
-            "Connect with nearby donors",
-            "Get help when you need it",
+            "Your Life, Our Priority",
+            "Find Your Lifeline",
+            "A Helping Hand Awaits",
         ];
 
  //check mail or phnnumber

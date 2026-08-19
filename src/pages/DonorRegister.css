@@ -1,115 +1,79 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .donor-register-page {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
-
-    padding: 80px 20px 50px;
-
+    padding: 15px 30px;
     display: flex;
     justify-content: center;
-
+    align-items: center;
     background: #fff6f7;
-
     font-family: Arial, Helvetica, sans-serif;
-
+    overflow: hidden;
     position: relative;
 }
 
-
-/* Back */
-
-.register-back {
-    position: absolute;
-
-    top: 30px;
-    left: 5%;
-
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    border: none;
-    background: transparent;
-
-    color: #777;
-
-    cursor: pointer;
-
-    font-size: 30px;
-}
-
-.register-back:hover {
-    color: #c7192e;
-}
-
-
-/* Card */
-
+/* =========================================
+   CARD - FITS SCREEN, NO SCROLL
+========================================= */
 .donor-register-card {
     width: 100%;
-    max-width: 850px;
-
-    padding: 50px;
-
-    background: white;
-
+    max-width: 950px;
+    padding: 25px 40px;
+    background: #ffffff;
     border-radius: 25px;
-
-    box-shadow:
-        0 15px 45px rgba(120, 20, 30, 0.12);
+    box-shadow: 0 15px 45px rgba(120, 20, 30, 0.12);
+    max-height: 88vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-
-/* Header */
-
+/* =========================================
+   HEADER
+========================================= */
 .register-header {
     text-align: center;
-
-    margin-bottom: 40px;
+    margin-bottom: 14px;
 }
 
 .register-icon {
-    width: 65px;
-    height: 65px;
-
-    margin: 0 auto 18px;
-
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
     background: #fff0f2;
-
     color: #c7192e;
+    font-size: 26px;
+}
+
+.register-icon svg {
+    width: 28px;
+    height: 28px;
 }
 
 .register-label {
-    margin: 0 0 10px;
-
+    margin: 0 0 4px;
     color: #c7192e;
-
-    font-size: 18px;
-
+    font-size: 20px;
     font-weight: 900;
-
     letter-spacing: 4px;
 }
 
 .register-header h1 {
     margin: 0;
-
-    color: #333;
-
+    color: #9d0b21;
     font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 45px;
-
-    line-height: 1.05;
+    font-size: 32px;
+    line-height: 1.50;
 }
 
 .register-header h1 span {
@@ -117,27 +81,18 @@
 }
 
 .register-header > p:last-child {
-    margin-top: 15px;
-
+    margin-top: 5px;
     color: #c7192e;
-
-    font-size: 22px;
+    font-size: 20px;
 }
 
 
-/* Section */
-
 .form-section-title {
-    margin: 30px 0 18px;
-
-    padding-bottom: 10px;
-
+    margin: 12px 0 8px;
+    padding-bottom: 5px;
     border-bottom: 1px solid #eee;
-
     color: #a91527;
-
     font-size: 25px;
-
     font-family: Georgia, "Times New Roman", serif;
 }
 
@@ -145,163 +100,278 @@
     margin-top: 0;
 }
 
-
-/* Grid */
-
 .form-grid {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
+    gap: 10px 20px;
 }
-
-
-/* Form */
 
 .form-group {
     display: flex;
-
     flex-direction: column;
 }
 
 .form-group label {
-    margin-bottom: 8px;
-
-    color: #716d6d;
-
-    font-size: 15px;
-
+    margin-bottom: 4px;
+    color: #c7192c;
+    font-size: 18px;
     font-weight: 700;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-
-    height: 48px;
-
-    padding: 0 13px;
-
-   border: 1px solid #c7192c;
-
-
-    border-radius: 9px;
-
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #c7192c;
+    border-radius: 8px;
     outline: none;
-
     background: #fffafa;
-
     color: #333;
-
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .form-group input:focus,
 .form-group select:focus {
     border-color: #c7192e;
-
-    box-shadow:
-        0 0 0 3px rgba(199, 25, 46, 0.07);
+    box-shadow: 0 0 0 3px rgba(199, 25, 46, 0.07);
 }
 
-
-/* Error */
-
 .register-error {
-    margin-top: 20px;
-
-    padding: 12px;
-
+    margin-top: 8px;
+    padding: 6px 10px;
     border-radius: 8px;
-
     background: #fff0f0;
-
     color: #c7192e;
-
-    font-size: 13px;
-
+    font-size: 12px;
     text-align: center;
 }
 
 
-/* Submit */
-
 .register-submit {
     width: 100%;
-
-    height: 52px;
-
-    margin-top: 30px;
-
+    height: 44px;
+    margin-top: 14px;
     border: none;
-
     border-radius: 10px;
-background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
-
+    background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: white;
-
-    font-size: 15px;
-
+    font-size: 16px;
     font-weight: 700;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
 
 .register-submit:hover {
     background: #a91527;
-
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(199, 25, 46, 0.2);
+}
 
-    box-shadow:
-        0 8px 20px rgba(199, 25, 46, 0.2);
+.register-submit:active {
+    transform: scale(0.99);
 }
 
 .register-submit:disabled {
     opacity: 0.7;
-
     cursor: not-allowed;
-
     transform: none;
 }
 
 
-/* Note */
+.register-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border: none;
+    background: transparent;
+    color: #a91527;
+    cursor: pointer;
+    font-size: 23px;
+    margin-top: 12px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: 0.3s ease;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.register-back:hover {
+    color: #c7192e;
+    background: rgba(199, 25, 46, 0.06);
+}
 
 .register-note {
-    margin: 15px 0 0;
-
-    color: #a91527;
-
-    font-size: 19px;
-
+    margin: 8px 0 0;
+    color: #c7192e;
+    font-size: 21px;
     text-align: center;
-
     line-height: 1.5;
 }
 
-
-/* Mobile */
-
-@media (max-width: 650px) {
-
+/* =========================================
+   TABLET
+========================================= */
+@media (max-width: 850px) {
     .donor-register-page {
-        padding: 80px 15px 30px;
+        padding: 15px 25px;
     }
 
     .donor-register-card {
-        padding: 35px 20px;
-
-        border-radius: 20px;
+        max-width: 100%;
+        padding: 22px 30px;
+        max-height: 90vh;
     }
 
     .register-header h1 {
-        font-size: 36px;
+        font-size: 28px;
+    }
+
+    .register-header > p:last-child {
+        font-size: 15px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 15px;
+    }
+
+    .form-section-title {
+        font-size: 17px;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+@media (max-width: 600px) {
+    .donor-register-page {
+        padding: 10px 12px;
+    }
+
+    .donor-register-card {
+        padding: 16px 14px;
+        max-width: 100%;
+        max-height: 95vh;
+        border-radius: 16px;
+    }
+
+    .register-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .register-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .register-label {
+        font-size: 12px;
+        letter-spacing: 2px;
+        margin-bottom: 2px;
+    }
+
+    .register-header h1 {
+        font-size: 24px;
+    }
+
+    .register-header > p:last-child {
+        font-size: 14px;
+        margin-top: 4px;
+    }
+
+    .register-header {
+        margin-bottom: 10px;
     }
 
     .form-grid {
         grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .form-section-title {
+        font-size: 15px;
+        margin: 10px 0 6px;
+        padding-bottom: 4px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 36px;
+        font-size: 12px;
+        border-radius: 6px;
+        padding: 0 10px;
+    }
+
+    .register-submit {
+        height: 42px;
+        font-size: 14px;
+        margin-top: 12px;
+        border-radius: 8px;
+    }
+
+    .register-back {
+        font-size: 14px;
+        margin-top: 10px;
+        padding: 6px 14px;
+    }
+
+    .register-note {
+        font-size: 12px;
+        margin-top: 6px;
+    }
+
+    .register-error {
+        font-size: 11px;
+        padding: 6px;
+        margin-top: 6px;
+    }
+}
+
+/* =========================================
+   VERY SMALL DEVICES
+========================================= */
+@media (max-width: 360px) {
+    .donor-register-card {
+        padding: 12px 10px;
+    }
+
+    .register-header h1 {
+        font-size: 20px;
+    }
+
+    .register-header > p:last-child {
+        font-size: 12px;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 32px;
+        font-size: 11px;
+    }
+
+    .register-submit {
+        height: 38px;
+        font-size: 13px;
+    }
+
+    .register-back {
+        font-size: 13px;
+        padding: 5px 12px;
+    }
+
+    .register-label {
+        font-size: 11px;
+        letter-spacing: 2px;
     }
 }

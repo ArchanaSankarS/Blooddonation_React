@@ -1,12 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import "./Welcome.css";
 import {
     UserPlus,
-     Search,
-    
+    Search,
     Handshake,
-    Heart
+    Heart,
+    Droplet,
+    Hospital,
+    Ambulance,
+    Syringe
 } from "lucide-react";
 
 function Welcome() {
@@ -15,10 +19,6 @@ function Welcome() {
 
     return (
         <div className="welcome-page">
-
-        
-                
-           
 
             <section className="hero-section">
 
@@ -46,16 +46,29 @@ function Welcome() {
                             className="action-button"
                             onClick={() => navigate("/auth/DONOR")}
                         >
-                            <strong>Donate Blood</strong>
-                            <small>I want to donate blood</small>
+                            <span className="button-icon">
+                                <Droplet />
+                            </span>
+
+                            <span className="button-content">
+                                <strong>Donate Blood</strong>
+                                <small>I want to donate blood</small>
+                            </span>
                         </button>
+
 
                         <button
                             className="action-button"
                             onClick={() => navigate("/auth/REQUESTER")}
                         >
-                            <strong>Need Blood</strong>
-                            <small>I need blood</small>
+                            <span className="button-icon">
+                                <Search />
+                            </span>
+
+                            <span className="button-content">
+                                <strong>Need Blood</strong>
+                                <small>I need blood</small>
+                            </span>
                         </button>
 
                     </div>
@@ -65,20 +78,13 @@ function Welcome() {
             </section>
 
 
-          
-              
-              
-        
-
             <section className="image-content-section donation-section">
 
                 <div className="section-inner">
 
-                 
-
                     <div className="feature-content">
 
-                        <span className="feature-label">
+                        <span className="feature-label blood-donation-title">
                             BLOOD DONATION
                         </span>
 
@@ -97,18 +103,21 @@ function Welcome() {
                     </div>
 
 
-                
-
                     <div className="image-card image-card-one">
 
-                        <div className="orbit orbit-one"></div>
+                        <div className="orbit orbit-one">
+                            <span className="orbit-icon">🩸</span>
+                            <span className="orbit-icon">❤️</span>
+                            <span className="orbit-icon">🫶</span>
+                            <span className="orbit-icon">💉</span>
+                        </div>
 
                         <div className="orbit orbit-two"></div>
 
                         <div className="image-circle">
 
                             <img
-                                src="/src/assets/donorimg.png"
+                                src="/src/assets/donor2.jpg"
                                 alt="Blood Donation"
                             />
 
@@ -121,26 +130,30 @@ function Welcome() {
             </section>
 
 
-       
             <div className="wave-transition wave-one"></div>
-
 
 
             <section className="image-content-section donor-section">
 
                 <div className="section-inner">
 
-                   
                     <div className="image-card image-card-two">
 
                         <div className="orbit orbit-one"></div>
 
-                        <div className="orbit orbit-two"></div>
+                        <div className="orbit orbit-two">
+
+                            <span className="orbit-icon">🏥</span>
+                            <span className="orbit-icon">🚑</span>
+                            <span className="orbit-icon">👨‍⚕️</span>
+                            <span className="orbit-icon">🩸</span>
+
+                        </div>
 
                         <div className="image-circle">
 
                             <img
-                                src="/src/assets/bd2.jpg"
+                                src="/src/assets/bdneed.jpg"
                                 alt="Find Blood Donor"
                             />
 
@@ -148,8 +161,6 @@ function Welcome() {
 
                     </div>
 
-
-             
 
                     <div className="feature-content">
 
@@ -159,14 +170,14 @@ function Welcome() {
 
                         <h2>
                             Find the right
-                      <br></br>
+                            <br />
                             <span>blood donor.</span>
                         </h2>
 
                         <p>
-                             Search for available donors based on blood group  and location, then connect with someone who can help when it matters most.
-  
-    
+                            Search for available donors based on blood group
+                            and location, then connect with someone who can
+                            help when it matters most.
                         </p>
 
                     </div>
@@ -176,14 +187,8 @@ function Welcome() {
             </section>
 
 
-            {/* WAVE */}
-
             <div className="wave-transition wave-two"></div>
 
-
-          
-                  
-        
 
             <section className="how-section">
 
@@ -207,62 +212,58 @@ function Welcome() {
                 </div>
 
 
-            
-
                 <div className="process-row">
 
+                    <div className="process-card">
+
+                        <div className="process-icon">
+                            <UserPlus />
+                        </div>
+
+                        <h3>Register</h3>
+
+                        <p>Create your account easily.</p>
+
+                    </div>
 
 
                     <div className="process-card">
 
-    <div className="process-icon">
-        <UserPlus />
-    </div>
+                        <div className="process-icon">
+                            <Search />
+                        </div>
 
-    <h3>Register</h3>
+                        <h3>Find</h3>
 
-    <p>Create your account easily.</p>
+                        <p>Find available donors.</p>
 
-</div>
-
-
-<div className="process-card">
-
-    <div className="process-icon">
-        <Search />
-    </div>
-
-    <h3>Find</h3>
-
-    <p>Find available donors.</p>
-
-</div>
+                    </div>
 
 
-<div className="process-card">
+                    <div className="process-card">
 
-    <div className="process-icon">
-        <Handshake />
-    </div>
+                        <div className="process-icon">
+                            <Handshake />
+                        </div>
 
-    <h3>Connect</h3>
+                        <h3>Connect</h3>
 
-    <p>Connect with the right donor.</p>
+                        <p>Connect with the right donor.</p>
 
-</div>
+                    </div>
 
 
-<div className="process-card">
+                    <div className="process-card">
 
-    <div className="process-icon">
-        <Heart />
-    </div>
+                        <div className="process-icon">
+                            <Heart />
+                        </div>
 
-    <h3>Save a Life</h3>
+                        <h3>Save a Life</h3>
 
-    <p>Make a real difference.</p>
+                        <p>Make a real difference.</p>
 
-</div>
+                    </div>
 
                 </div>
 

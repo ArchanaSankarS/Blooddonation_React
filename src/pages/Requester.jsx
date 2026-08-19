@@ -29,9 +29,9 @@ function Requester() {
     const [contactLoading, setContactLoading] = useState(false);
 
 
-    // ==============================
+    
     // CHECK REQUESTER LOGIN
-    // ==============================
+   
 
     useEffect(() => {
 
@@ -67,9 +67,9 @@ function Requester() {
     }, [navigate]);
 
 
-    // ==============================
+   
     // LOAD AVAILABLE DONORS
-    // ==============================
+   
 
     const loadDonors = async () => {
 
@@ -116,9 +116,9 @@ function Requester() {
     };
 
 
-    // ==============================
+    
     // SEARCH
-    // ==============================
+    
 
     const handleSearch = async (e) => {
 
@@ -191,9 +191,9 @@ function Requester() {
     };
 
 
-    // ==============================
+  
     // CLEAR SEARCH
-    // ==============================
+    
 
     const handleClear = () => {
 
@@ -204,9 +204,9 @@ function Requester() {
     };
 
 
-    // ==============================
+   
     // LOGOUT
-    // ==============================
+  
 
     const handleLogout = () => {
 
@@ -217,9 +217,9 @@ function Requester() {
     };
 
 
-    // ==============================
+  
     // VIEW CONTACT
-    // ==============================
+   
 
     const handleViewContact = async (donor) => {
 
@@ -260,9 +260,8 @@ function Requester() {
     };
 
 
-    // ==============================
     // CLOSE CONTACT
-    // ==============================
+  
 
     const handleCloseContact = () => {
 
@@ -275,7 +274,6 @@ function Requester() {
         <div className="requester-page">
 
 
-            {/* ================= HEADER ================= */}
 
             <header className="requester-header">
 
@@ -320,7 +318,6 @@ function Requester() {
             </header>
 
 
-            {/* ================= SEARCH ================= */}
 
             <section className="search-card">
 
@@ -393,7 +390,6 @@ function Requester() {
             </section>
 
 
-            {/* ================= ERROR ================= */}
 
             {error && (
 
@@ -404,7 +400,6 @@ function Requester() {
             )}
 
 
-            {/* ================= LOADING ================= */}
 
             {loading && (
 
@@ -415,7 +410,6 @@ function Requester() {
             )}
 
 
-            {/* ================= DONORS ================= */}
 
             {!loading && (
 
@@ -517,7 +511,6 @@ function Requester() {
             )}
 
 
-            {/* ================= CONTACT POPUP ================= */}
 
             {selectedDonor && (
 

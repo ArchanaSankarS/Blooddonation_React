@@ -1,104 +1,73 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .requester-register-page {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
-
-    padding: 80px 20px 50px;
-
+    padding: 15px 30px;
     display: flex;
     justify-content: center;
-
-    background: #fff6f7;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    position: relative;
-}
-
-
-
-.requester-register-back {
-    position: absolute;
-
-    top: 30px;
-    left: 5%;
-
-    display: flex;
     align-items: center;
-    gap: 7px;
-
-    border: none;
-    background: transparent;
-
-    color: #777;
-
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.requester-register-back:hover {
-    color: #c7192e;
+    background: #fff6f7;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 
 .requester-register-card {
     width: 100%;
-    max-width: 850px;
-
-    padding: 50px;
-
-    background: white;
-
+    max-width: 1200px;        
+    padding: 45px 65px;      
+    background: #ffffff;
     border-radius: 25px;
-
-    box-shadow:
-        0 15px 45px rgba(120, 20, 30, 0.12);
+    box-shadow: 0 15px 45px rgba(120, 20, 30, 0.12);
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
 .requester-register-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;      
 }
 
 .requester-register-icon {
-    width: 65px;
-    height: 65px;
-
-    margin: 0 auto 18px;
-
+    width: 70px;              
+    height: 70px;             
+    margin: 0 auto 14px;      
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
     background: #fff0f2;
     color: #c7192e;
+    font-size: 32px;          
+}
+
+.requester-register-icon svg {
+    width: 35px;              
+    height: 35px;             
 }
 
 .requester-register-label {
-    margin: 0 0 10px;
-
+    margin: 0 0 20px;         
     color: #c7192e;
-
-    font-size: 18px;
+    font-size: 25px;          
     font-weight: 900;
-
-    letter-spacing: 4px;
+    letter-spacing: 5px;      
 }
 
 .requester-register-header h1 {
-    margin: 0;
-
-    color: #333;
-
+    margin: 0 0 25px;
+    color: #a91527;
     font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 45px;
+    font-size: 40px;         
 }
 
 .requester-register-header h1 span {
@@ -106,36 +75,33 @@
 }
 
 .requester-register-header p:last-child {
-    margin-top: 15px;
-
+    margin-top: 10px;          
     color: #c7192e;
-
-    font-size: 20px;
+    font-size: 25px;         
 }
-
 
 
 .requester-section-title {
-    margin: 30px 0 18px;
-
-    padding-bottom: 10px;
-
-    border-bottom: 1px solid #eee;
-
+    margin: 16px 0 12px;      
+    padding-bottom: 8px;      
+    border-bottom: 2px solid #eee;  
     color: #a91527;
-
-    font-size: 25px;
-
+    font-size: 30px;     
+    font-weight: 650;     
     font-family: Georgia, "Times New Roman", serif;
 }
 
+.requester-section-title:first-child {
+    margin-top: 0;
+}
+
+
 .requester-form-grid {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
+    gap: 16px 30px;         
 }
+
 
 .requester-form-group {
     display: flex;
@@ -143,137 +109,280 @@
 }
 
 .requester-form-group label {
-    margin-bottom: 8px;
-
-    color: #716d6d;
-
-    font-size: 15px;
+    margin-bottom: 6px;      
+    color: #a91527;
+    font-size: 16px;         
     font-weight: 700;
 }
 
 .requester-form-group input {
     width: 100%;
-
-    height: 48px;
-
-    padding: 0 13px;
-
-border: 1px solid #c7192c;
-
-    border-radius: 9px;
-
+    height: 46px;             
+    padding: 0 16px;          
+    border: 1.5px solid #c7192c;  
+    border-radius: 10px;      
     outline: none;
-
     background: #fffafa;
-
     color: #333;
-
-    font-size: 14px;
+    font-size: 15px;          
 }
 
 .requester-form-group input:focus {
     border-color: #c7192e;
-
-    box-shadow:
-        0 0 0 3px rgba(199, 25, 46, 0.07);
+    box-shadow: 0 0 0 3px rgba(199, 25, 46, 0.07);
 }
 
 
-
 .requester-register-error {
-    margin-top: 20px;
-
-    padding: 12px 15px;
-
+    margin-top: 10px;        
+    padding: 8px 14px;        
     border-radius: 8px;
-
     background: #fff0f0;
-
     color: #c7192e;
-
-    font-size: 13px;
-
+    font-size: 14px;          
     text-align: center;
 }
 
 
-
 .requester-register-submit {
     width: 100%;
-
-    height: 52px;
-
-    margin-top: 30px;
-
+    height: 54px;             
+    margin-top: 20px;         
     border: none;
-
-    border-radius: 10px;
-
-background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
+    border-radius: 12px;      
+    background: linear-gradient(135deg, #e96a79 0%, #c7192e 45%, #a9152a 100%);
     color: white;
-
-    font-size: 15px;
-
+    font-size: 20px;          
     font-weight: 700;
-
     cursor: pointer;
-
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 .requester-register-submit:hover {
     background: #a91527;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(199, 25, 46, 0.2);
 }
 
 .requester-register-submit:active {
     transform: scale(0.99);
 }
 
-
-
-.requester-register-note {
-    margin: 15px 0 0;
-
-    color: #a91527;
-
-    font-size: 18px;
-
-    text-align: center;
+.requester-register-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
 }
 
 
+.requester-register-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;                 
+    border: none;
+    background: transparent;
+    color: #a91527;
+    cursor: pointer;
+    font-size: 25px;          
+    margin-top: 16px;         
+    padding: 10px 24px;       
+    border-radius: 25px;      
+    transition: 0.3s ease;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-@media (max-width: 650px) {
+.requester-register-back:hover {
+    color: #c7192e;
+    background: rgba(199, 25, 46, 0.06);
+}
 
+.requester-register-note {
+    margin: 10px 0 0;         
+    color: #c7192c;
+    font-size: 25px;  
+    font-weight: 550;       
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+@media (max-width: 850px) {
     .requester-register-page {
-        padding: 80px 15px 30px;
+        padding: 15px 25px;
     }
 
     .requester-register-card {
-        padding: 35px 20px;
+        max-width: 100%;
+        padding: 30px 40px;
+        max-height: 90vh;
     }
 
     .requester-register-header h1 {
-        font-size: 36px;
+        font-size: 34px;
+    }
+
+    .requester-register-header p:last-child {
+        font-size: 17px;
     }
 
     .requester-form-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 20px;
+    }
+
+    .requester-section-title {
+        font-size: 19px;
+    }
+
+    .requester-form-group input {
+        height: 42px;
+        font-size: 14px;
+    }
+
+    .requester-register-submit {
+        height: 48px;
+        font-size: 18px;
+    }
+
+    .requester-register-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
     }
 }
 
-@media (max-width: 400px) {
+/* =========================================
+   MOBILE
+========================================= */
+@media (max-width: 600px) {
+    .requester-register-page {
+        padding: 10px 12px;
+    }
 
-    .requester-register-header h1 {
-        font-size: 30px;
+    .requester-register-card {
+        padding: 20px 18px;
+        max-width: 100%;
+        max-height: 95vh;
+        border-radius: 18px;
+    }
+
+    .requester-register-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .requester-register-icon svg {
+        width: 28px;
+        height: 28px;
     }
 
     .requester-register-label {
-        font-size: 14px;
+        font-size: 16px;
         letter-spacing: 3px;
+        margin-bottom: 6px;
+    }
+
+    .requester-register-header h1 {
+        font-size: 28px;
     }
 
     .requester-register-header p:last-child {
         font-size: 16px;
+        margin-top: 6px;
+    }
+
+    .requester-register-header {
+        margin-bottom: 14px;
+    }
+
+    .requester-form-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .requester-section-title {
+        font-size: 17px;
+        margin: 14px 0 10px;
+        padding-bottom: 6px;
+    }
+
+    .requester-form-group label {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    .requester-form-group input {
+        height: 40px;
+        font-size: 14px;
+        border-radius: 8px;
+        padding: 0 12px;
+    }
+
+    .requester-register-submit {
+        height: 48px;
+        font-size: 17px;
+        margin-top: 16px;
+        border-radius: 10px;
+    }
+
+    .requester-register-back {
+        font-size: 16px;
+        margin-top: 14px;
+        padding: 8px 18px;
+    }
+
+    .requester-register-note {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    .requester-register-error {
+        font-size: 13px;
+        padding: 8px 12px;
+        margin-top: 8px;
+    }
+}
+
+/* =========================================
+   VERY SMALL DEVICES
+========================================= */
+@media (max-width: 360px) {
+    .requester-register-card {
+        padding: 14px 12px;
+    }
+
+    .requester-register-header h1 {
+        font-size: 24px;
+    }
+
+    .requester-register-header p:last-child {
+        font-size: 14px;
+    }
+
+    .requester-form-group input {
+        height: 36px;
+        font-size: 13px;
+    }
+
+    .requester-register-submit {
+        height: 44px;
+        font-size: 15px;
+    }
+
+    .requester-register-back {
+        font-size: 15px;
+        padding: 6px 14px;
+    }
+
+    .requester-register-label {
+        font-size: 14px;
+        letter-spacing: 2px;
     }
 }

@@ -12,6 +12,7 @@ import {
     LogOut,
     Power,
     Edit,
+  
     Hand,
     Scale,
     X
