@@ -38,9 +38,7 @@ function DonorRegister() {
         e.preventDefault();
         setError("");
 
-        // =========================
-        // VALIDATION
-        // =========================
+      //validation
 
         if (!formData.name.trim()) {
             setError("Full Name is required.");
@@ -101,9 +99,7 @@ function DonorRegister() {
         try {
             setLoading(true);
 
-            // =========================
-            // 1. CREATE USER
-            // =========================
+  //create user
 
             const userResponse = await fetch(
                 "http://localhost:8081/api/auth/register",
@@ -137,9 +133,7 @@ function DonorRegister() {
                 return;
             }
 
-            // =========================
-            // 2. CREATE DONOR
-            // =========================
+     //create donor
 
             const donorResponse = await fetch(
                 "http://localhost:8081/api/donor/save",
@@ -167,16 +161,11 @@ function DonorRegister() {
                 return;
             }
 
-            // =========================
-            // 3. SAVE LOGIN SESSION
-            // =========================
+     //save login
 
             localStorage.setItem("user", JSON.stringify(createdUser));
             localStorage.setItem("role", "DONOR");
-
-            // =========================
-            // 4. GO DONOR DASHBOARD
-            // =========================
+//donor dashboard
 
             navigate("/donor-dashboard");
 
@@ -209,9 +198,7 @@ function DonorRegister() {
 
                 <form onSubmit={handleSubmit}>
 
-                    {/* =========================
-                        PERSONAL DETAILS
-                    ========================= */}
+              
                     <h3 className="form-section-title">Personal Details</h3>
 
                     <div className="form-grid">
@@ -294,9 +281,7 @@ function DonorRegister() {
 
                     </div>
 
-                    {/* =========================
-                        DONOR DETAILS
-                    ========================= */}
+                
                     <h3 className="form-section-title donor-details-title">Donor Details</h3>
 
                     <div className="form-grid">
