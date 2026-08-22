@@ -43,10 +43,9 @@ function Auth() {
     const benefits = isDonor
         ? [
             "Help patients in need",
-            " Be a Hero, Save a Life",
-
-            " Give hope, give life",
-            "One Drop, One Life ",
+            "Be a Hero, Save a Life",
+            "Give hope, give life",
+            "One Drop, One Life",
         ]
         : [
             "Find blood donors easily",
@@ -55,7 +54,10 @@ function Auth() {
             "A Helping Hand Awaits",
         ];
 
- //check mail or phnnumber
+
+    // =========================================================
+    // CHECK EMAIL / PHONE
+    // =========================================================
 
     const handleCheckUser = async (e) => {
 
@@ -65,7 +67,11 @@ function Auth() {
         setSuccess("");
 
         if (!login.trim()) {
-            setError("Please enter your phone number or email.");
+
+            setError(
+                "Please enter your phone number or email."
+            );
+
             return;
         }
 
@@ -99,7 +105,11 @@ function Auth() {
 
                 return;
             }
-//existing user
+
+
+            // =================================================
+            // EXISTING USER
+            // =================================================
 
             if (data.exists) {
 
@@ -111,19 +121,34 @@ function Auth() {
 
             }
 
-     //new user
 
-      else {
-    if (currentRole === "DONOR") {
-        navigate("/donor-rules", {
-            state: { login: login.trim() }
-        });
-    } else if (currentRole === "REQUESTER") {
-        navigate("/requester-rules", {
-            state: { login: login.trim() }
-        });
-    }
-}
+            // =================================================
+            // NEW USER
+            // =================================================
+
+            else {
+
+                if (currentRole === "DONOR") {
+
+                    navigate("/donor-rules", {
+                        state: {
+                            login: login.trim()
+                        }
+                    });
+
+                }
+
+                else if (currentRole === "REQUESTER") {
+
+                    navigate("/requester-rules", {
+                        state: {
+                            login: login.trim()
+                        }
+                    });
+
+                }
+
+            }
 
         } catch (err) {
 
@@ -136,11 +161,13 @@ function Auth() {
         } finally {
 
             setLoading(false);
-
         }
     };
 
-//login
+
+    // =========================================================
+    // LOGIN
+    // =========================================================
 
     const handleLogin = async (e) => {
 
@@ -151,7 +178,9 @@ function Auth() {
 
         if (!password.trim()) {
 
-            setError("Please enter your password.");
+            setError(
+                "Please enter your password."
+            );
 
             return;
         }
@@ -178,7 +207,10 @@ function Auth() {
 
             const data = await response.json();
 
-            console.log("LOGIN RESPONSE:", data);
+            console.log(
+                "LOGIN RESPONSE:",
+                data
+            );
 
             if (!response.ok) {
 
@@ -191,11 +223,12 @@ function Auth() {
                 return;
             }
 
-            const user = data.user;
 
-            const backendRole =
-                data.role ||
-                user?.role;
+            // =================================================
+            // GET USER
+            // =================================================
+
+            const user = data.user;
 
             if (!user) {
 
@@ -206,29 +239,34 @@ function Auth() {
                 return;
             }
 
-            if (!backendRole) {
 
-                setError(
-                    "User role not received from backend."
-                );
-
-                return;
-            }
+            // =================================================
+            // IMPORTANT
+            //
+            // Do NOT check backend role here.
+            //
+            // The user can use the same account as both
+            // DONOR and REQUESTER.
+            // =================================================
 
             const loggedInRole =
-                backendRole.toString().toUpperCase();
-//role check
+                currentRole;
 
-            if (currentRole !== loggedInRole) {
+
+            if (!loggedInRole) {
 
                 setError(
-                    `This account is registered as ${loggedInRole}. Please use the ${loggedInRole.toLowerCase()} login.`
+                    "Unable to identify login type."
                 );
 
                 return;
             }
 
-        //user saved
+
+            // =================================================
+            // SAVE USER
+            // =================================================
+
             localStorage.setItem(
                 "user",
                 JSON.stringify(user)
@@ -239,21 +277,36 @@ function Auth() {
                 loggedInRole
             );
 
-            setSuccess("Login successful!");
+
+            setSuccess(
+                "Login successful!"
+            );
+
+
+            // =================================================
+            // REDIRECT BASED ON CURRENT LOGIN PAGE
+            // =================================================
 
             setTimeout(() => {
 
                 if (loggedInRole === "DONOR") {
 
-                    navigate("/donor-dashboard");
+                    navigate(
+                        "/donor-dashboard"
+                    );
 
-                } else if (loggedInRole === "REQUESTER") {
+                }
 
-                    navigate("/requester-home");
+                else if (loggedInRole === "REQUESTER") {
+
+                    navigate(
+                        "/requester-home"
+                    );
 
                 }
 
             }, 500);
+
 
         } catch (err) {
 
@@ -268,14 +321,22 @@ function Auth() {
             setLoading(false);
         }
     };
-//back
+
+
+    // =========================================================
+    // BACK BUTTON
+    // =========================================================
+
     const handleBack = () => {
 
         if (step === "password") {
 
             setStep("login");
+
             setPassword("");
+
             setError("");
+
             setSuccess("");
 
             return;
@@ -284,13 +345,17 @@ function Auth() {
         navigate("/");
     };
 
+
     return (
 
         <div className="auth-page">
 
             <div className="auth-card">
 
-                {/* LEFT */}
+
+                {/* =================================================
+                    LEFT SIDE
+                ================================================= */}
 
                 <div className="auth-left">
 
@@ -306,28 +371,34 @@ function Auth() {
                         {leftDescription}
                     </p>
 
-                    {benefits.map((benefit, index) => (
 
-                        <div
-                            className="benefit"
-                            key={index}
-                        >
+                    {benefits.map(
+                        (benefit, index) => (
 
-                            <span>
-                                <FaCheck />
-                            </span>
+                            <div
+                                className="benefit"
+                                key={index}
+                            >
 
-                            <p>
-                                {benefit}
-                            </p>
+                                <span>
+                                    <FaCheck />
+                                </span>
 
-                        </div>
+                                <p>
+                                    {benefit}
+                                </p>
 
-                    ))}
+                            </div>
+
+                        )
+                    )}
 
                 </div>
 
-                {/* RIGHT */}
+
+                {/* =================================================
+                    RIGHT SIDE
+                ================================================= */}
 
                 <div className="auth-right">
 
@@ -343,11 +414,16 @@ function Auth() {
                         {pageDescription}
                     </p>
 
-                  
+
+                    {/* =================================================
+                        STEP 1 - EMAIL / PHONE
+                    ================================================= */}
 
                     {step === "login" && (
 
-                        <form onSubmit={handleCheckUser}>
+                        <form
+                            onSubmit={handleCheckUser}
+                        >
 
                             <label htmlFor="login">
                                 Phone Number / Email
@@ -359,10 +435,13 @@ function Auth() {
                                 placeholder="Enter phone number or email"
                                 value={login}
                                 onChange={(e) =>
-                                    setLogin(e.target.value)
+                                    setLogin(
+                                        e.target.value
+                                    )
                                 }
                                 autoComplete="username"
                             />
+
 
                             {error && (
 
@@ -372,6 +451,7 @@ function Auth() {
 
                             )}
 
+
                             {success && (
 
                                 <p className="auth-success">
@@ -379,6 +459,7 @@ function Auth() {
                                 </p>
 
                             )}
+
 
                             <button
                                 type="submit"
@@ -388,7 +469,8 @@ function Auth() {
 
                                 {loading
                                     ? "Checking..."
-                                    : "Continue"}
+                                    : "Continue"
+                                }
 
                             </button>
 
@@ -396,10 +478,16 @@ function Auth() {
 
                     )}
 
-                 
+
+                    {/* =================================================
+                        STEP 2 - PASSWORD
+                    ================================================= */}
+
                     {step === "password" && (
 
-                        <form onSubmit={handleLogin}>
+                        <form
+                            onSubmit={handleLogin}
+                        >
 
                             <label>
                                 Phone Number / Email
@@ -411,9 +499,11 @@ function Auth() {
                                 disabled
                             />
 
+
                             <label htmlFor="password">
                                 Password
                             </label>
+
 
                             <div className="password-box">
 
@@ -427,10 +517,13 @@ function Auth() {
                                     placeholder="Enter password"
                                     value={password}
                                     onChange={(e) =>
-                                        setPassword(e.target.value)
+                                        setPassword(
+                                            e.target.value
+                                        )
                                     }
                                     autoComplete="current-password"
                                 />
+
 
                                 <button
                                     type="button"
@@ -441,12 +534,16 @@ function Auth() {
                                         )
                                     }
                                 >
+
                                     {showPassword
                                         ? "Hide"
-                                        : "Show"}
+                                        : "Show"
+                                    }
+
                                 </button>
 
                             </div>
+
 
                             {error && (
 
@@ -456,6 +553,7 @@ function Auth() {
 
                             )}
 
+
                             {success && (
 
                                 <p className="auth-success">
@@ -463,6 +561,7 @@ function Auth() {
                                 </p>
 
                             )}
+
 
                             <button
                                 type="submit"
@@ -472,7 +571,8 @@ function Auth() {
 
                                 {loading
                                     ? "Logging in..."
-                                    : "Login"}
+                                    : "Login"
+                                }
 
                             </button>
 
@@ -480,14 +580,19 @@ function Auth() {
 
                     )}
 
-                    {/* BACK */}
+
+                    {/* =================================================
+                        BACK BUTTON
+                    ================================================= */}
 
                     <button
                         type="button"
                         className="back-button"
                         onClick={handleBack}
                     >
+
                         ← Back
+
                     </button>
 
                 </div>
